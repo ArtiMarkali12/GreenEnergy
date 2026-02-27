@@ -1,0 +1,804 @@
+/* .hero-container {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  margin-top: 1px;
+  
+  
+} */
+/* 
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: background-image 1s ease-in-out;
+  height: 400px;
+} */
+/* 
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+   height: 400px;
+} */
+
+/* .hero-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  max-width: 700px;
+}
+
+.hero-btn {
+  padding: 12px 35px;
+  background: #16a34a;
+  border: none;
+  border-radius: 50px;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.hero-btn:hover {
+  background: #15803d;
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.hero-container {
+  height: 73vh;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;   /* ⭐ IMPORTANT LINE */
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+   margin-top: 1px;
+  
+}
+
+/* Overlay */
+.hero-overlay {
+    height: 400px;
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* Content */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: white;
+  max-width: 800px;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.hero-btn {
+  padding: 12px 35px;
+  background: #16a34a;
+  border: none;
+  border-radius: 50px;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.hero-btn:hover {
+  background: #15803d;
+}
+
+/* ================= SERVICES SECTION ================= */
+
+.services-section {
+  padding: 80px 10%;
+  background-color: #F1F8E9;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 36px;
+  margin-bottom: 50px;
+  color: #1B5E20;
+  /* margin-top: 70px; */
+}
+
+.services-container {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.service-card {
+  background: white;
+  padding: 30px;
+  width: 300px;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  transition: 0.3s ease;
+}
+
+.service-card h3 {
+  margin-bottom: 15px;
+  color: #1B5E20;
+}
+
+.service-card p {
+  color: #555;
+  font-size: 15px;
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+
+
+
+
+
+.services-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;   /* 🔥 Important */
+  gap: 30px;
+}
+
+/* Common Card */
+.service-card {
+  background: white;
+  padding: 30px;
+  width: 270px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: 0.4s ease;
+}
+
+/* Side Cards */
+.service-card:first-child,
+.service-card:last-child {
+  transform: scale(0.9);
+  z-index: 1;
+  margin-bottom: 50px;
+}
+
+/* 🔥 Middle Card */
+.service-card:nth-child(2) {
+  transform: scale(1.15);
+  margin-top: -40px;   /* var uthellela */
+  z-index: 5;
+  box-shadow: 0 35px 50px rgba(0, 0, 0, 0.25);
+}
+
+/* Hover */
+.service-card:hover {
+  transform: scale(1.05) translateY(-8px);
+}
+
+/* Keep middle strong on hover */
+.service-card:nth-child(2):hover {
+  transform: scale(1.18);
+}
+
+
+
+
+/*=============== Mobile Responsive Service============= */
+
+@media (max-width: 768px) {
+  .services-container {
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+
+  .service-card,
+  .service-card:nth-child(2) {
+    transform: scale(1);
+    margin-top: 0;
+    width: 100%;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+/* ================= MOBILE RESPONSIVE FIX ================= */
+@media (max-width: 768px) {
+
+  /* Section padding reduce */
+  .services-section {
+    padding: 40px 5%;
+  }
+
+  /* Title responsive */
+  .section-title {
+    font-size: 24px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    font-weight: 700;
+  }
+
+  /* Container column layout */
+  .services-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  /* Remove ALL scaling effects on mobile */
+  .service-card,
+  .service-card:first-child,
+  .service-card:last-child,
+  .service-card:nth-child(2) {
+    transform: none !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    width: 100%;
+    max-width: 350px;
+  }
+
+  .service-card {
+    padding: 20px;
+  }
+
+  .service-card h3 {
+    font-size: 18px;
+  }
+
+  .service-card p {
+    font-size: 14px;
+  }
+
+}
+
+
+
+
+/* ================= MOBILE RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+
+  .hero-container {
+    height: 54vh;                 /* full screen nko */
+   
+    background-position: center;
+    
+  background-attachment: fixed;   /* ⭐ IMPORTANT LINE */
+  }
+
+  .hero-content h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero-content p {
+    font-size: 0.95rem;
+  }
+
+  .hero-btn {
+    padding: 10px 25px;
+    font-size: 14px;
+  }
+}
+
+
+
+
+
+
+/* ================= TIMELINE SECTION ================= */
+
+.timeline-section {
+  padding: 100px 10%;
+  background: #f1f8e9;
+  text-align: center;
+}
+
+.timeline {
+  position: relative;
+  margin-top: 60px;
+  padding: 20px 0;
+}
+
+/* Center Line */
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 4px;
+  height: 100%;
+  background: #1B5E20;
+  transform: translateX(-50%);
+}
+
+.timeline-item {
+  position: relative;
+  width: 50%;
+  padding: 20px 40px;
+}
+
+.timeline-item:nth-child(odd) {
+  left: 0;
+  text-align: right;
+}
+
+.timeline-item:nth-child(even) {
+  left: 50%;
+  text-align: left;
+}
+
+/* Dot */
+.timeline-dot {
+  position: absolute;
+  top: 30px;
+  width: 18px;
+  height: 18px;
+  background: #1B5E20;
+  border-radius: 50%;
+  left: 100%;
+  transform: translateX(-50%);
+}
+
+.timeline-item:nth-child(even) .timeline-dot {
+  left: 0;
+  transform: translateX(-50%);
+}
+
+/* Content */
+.timeline-content h3 {
+  color: #1B5E20;
+  margin-bottom: 10px;
+}
+
+.timeline-content p {
+  color: #555;
+  font-size: 15px;
+}
+
+/* Default hidden */
+.timeline-item {
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+/* Scroll var visible */
+.timeline-item.show {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .timeline::before {
+    left: 10px;
+  }
+
+  .timeline-item {
+    width: 100%;
+    padding-left: 40px;
+    text-align: left !important;
+  }
+
+  .timeline-item:nth-child(even) {
+    left: 0;
+  }
+
+  .timeline-dot {
+    left: 10px !important;
+  }
+}
+
+
+
+/* ================= SCROLL ANIMATION ================= */
+
+.timeline-item {
+  opacity: 0;
+  transform: translateY(-60px);   /* Top kadun start */
+  transition: all 0.8s ease;
+}
+
+/* Active class jeva scroll var yeil */
+.timeline-item.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==================== BIOMASS PELLETS========================= */
+
+.product-hero {
+  position: relative;
+  width: 100%;
+  height: 70vh;   /* height kami keli */
+
+  background-image: url("../../assets/images/coco3.png");
+  background-position: bottom center;   /* 🔥 bottom show hoil */
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+
+.product-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+}
+
+.product-overlay {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+}
+
+.product-overlay h2 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.product-overlay p {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.spec-cards {
+  position: absolute;
+  bottom: -60px;
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+  z-index: 3;
+}
+
+.spec-card {
+  background: white;
+  color: #1b5e20;
+  padding: 30px 40px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  transition: 0.4s ease;
+}
+
+.spec-card h3 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.spec-card span {
+  font-size: 14px;
+  color: #555;
+}
+
+.spec-card:hover {
+  transform: translateY(-10px);
+}
+
+@media (max-width: 768px) {
+
+  .product-hero {
+    height: 60vh;   /* thoda adjust */
+    
+    
+  }
+
+  .spec-cards {
+    bottom: -60px;   /* thoda upar anun ghe */
+    gap: 10px;
+    padding: 0 10px;
+  }
+
+  .spec-card {
+    padding: 15px 18px;
+    border-radius: 10px;
+  }
+
+  .spec-card h3 {
+    font-size: 18px;
+  }
+
+  .spec-card span {
+    font-size: 12px;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  /* Raw Material section padding kami kara */
+  .services-section {
+    padding: 10px 5% !important;
+    
+  }
+
+}
+
+
+/* ========================================================== */
+/* ================= BIOMASS BRIQUETTES SECTION ================= */
+
+.briquettes-section {
+  padding: 70px 8%;
+  background: linear-gradient(135deg, #f1f8e9, #e8f5e9);
+  text-align: center;
+  margin-top: 30px;
+}
+
+.briquettes-title {
+  font-size: 34px;
+  font-weight: 700;
+  color: #1b5e20;
+  margin-bottom: 50px;
+  margin-top: 40px;
+}
+
+/* Table Wrapper */
+.briquettes-table-wrapper {
+  overflow-x: auto;
+  display: flex;
+  justify-content: center;
+}
+
+/* Table Styling */
+.briquettes-table {
+  width: 100%;
+  max-width: 900px;
+  border-collapse: collapse;
+  background: #ffffff;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+  transition: 0.4s ease;
+}
+
+/* Header */
+.briquettes-table thead {
+  background: linear-gradient(90deg, #2e7d32, #1b5e20);
+  color: white;
+}
+
+.briquettes-table th {
+  padding: 18px;
+  font-size: 16px;
+  text-align: left;
+  letter-spacing: 0.5px;
+}
+
+/* Body */
+.briquettes-table td {
+  padding: 16px 18px;
+  font-size: 15px;
+  color: #444;
+  border-bottom: 1px solid #eee;
+}
+
+/* Alternate Rows */
+.briquettes-table tbody tr:nth-child(even) {
+  background-color: #f9fbe7;
+}
+
+/* Hover Effect */
+.briquettes-table tbody tr:hover {
+  background-color: #e8f5e9;
+  transform: scale(1.01);
+  transition: 0.3s ease;
+}
+
+/* ================= MOBILE RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+
+  .briquettes-section {
+    padding: 40px 5%;
+     margin-top: 40px;
+  }
+
+  .briquettes-title {
+    font-size: 24px;
+    margin-bottom: 30px;
+   
+  }
+
+  .briquettes-table th,
+  .briquettes-table td {
+    padding: 10px;
+    font-size: 13px;
+  }
+
+}
+
+
+
+
+/* ================= PROCESS TIMELINE SECTION ================= */
+
+.process-timeline-section {
+  padding: 80px 10%;
+  background: #f9fdf6;
+  text-align: center;
+}
+
+.timeline-title {
+  font-size: 36px;
+  margin-bottom: 60px;
+  color: #1B5E20;
+}
+
+/* Timeline Wrapper */
+.process-timeline {
+  position: relative;
+  max-width: 800px;
+  margin: auto;
+}
+
+/* Vertical Line */
+.process-timeline::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background: #c8e6c9;
+  transform: translateX(-50%);
+}
+
+/* Each Step */
+.process-step {
+  position: relative;
+  width: 50%;
+  padding: 20px 40px;
+  box-sizing: border-box;
+}
+
+/* Left Side */
+.process-step:nth-child(odd) {
+  left: 0;
+  text-align: right;
+}
+
+/* Right Side */
+.process-step:nth-child(even) {
+  left: 50%;
+  text-align: left;
+}
+
+/* Circle Dot */
+.step-indicator {
+  position: absolute;
+  top: 25px;
+  right: -12px;
+  width: 20px;
+  height: 20px;
+  background: #2e7d32;
+  border-radius: 50%;
+  z-index: 5;
+}
+
+.process-step:nth-child(even) .step-indicator {
+  left: -12px;
+}
+
+/* Content Box */
+.step-content {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.step-content h3 {
+  margin-bottom: 10px;
+  color: #1B5E20;
+}
+
+.step-content p {
+  font-size: 14px;
+  color: #555;
+}
+
+/* ================= MOBILE RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+
+  .timeline-title {
+    font-size: 24px;
+    margin-bottom: 40px;
+  }
+
+  .process-timeline::before {
+    left: 8px;
+  }
+
+  .process-step {
+    width: 100%;
+    padding-left: 40px;
+    padding-right: 10px;
+    margin-bottom: 40px;
+    text-align: left !important;
+  }
+
+  .process-step:nth-child(even),
+  .process-step:nth-child(odd) {
+    left: 0;
+  }
+
+  .step-indicator {
+    left: 0;
+    right: auto;
+  }
+}

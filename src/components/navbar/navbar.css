@@ -1,0 +1,185 @@
+/* ============================= */
+/* 🌿 GREEN ENERGY NAVBAR THEME */
+/* ============================= */
+
+/* Use Theme Variables */
+:root {
+  --primary-green: #1B5E20;
+  --light-green: #4CAF50;
+  --background-light: #F1F8E9;
+  --accent-yellow: #fbcc31;
+}
+
+/* ============================= */
+/* Navbar */
+/* ============================= */
+
+.custom-navbar {
+  background: linear-gradient(
+    90deg,
+    var(--primary-green),
+    var(--light-green)
+  );
+  padding: 10px 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.navbar-brand {
+  font-size: 22px;
+  letter-spacing: 1px;
+  color: white !important;
+}
+
+/* Desktop Links */
+.custom-navbar .nav-link {
+  color: white !important;
+  font-weight: 500;
+  margin: 0 15px;
+  position: relative;
+  transition: 0.3s ease;
+}
+
+/* Underline Animation */
+.custom-navbar .nav-link::after {
+  content: "";
+  width: 0%;
+  height: 2px;
+  background-color: var(--accent-yellow);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  transition: 0.3s ease;
+}
+
+.custom-navbar .nav-link:hover::after {
+  width: 100%;
+}
+
+.custom-navbar .nav-link:hover {
+  color: var(--accent-yellow) !important;
+}
+
+/* ============================= */
+/* Button */
+/* ============================= */
+
+.btn-eco {
+  background-color: var(--accent-yellow);
+  color: var(--primary-green);
+  border-radius: 25px;
+  padding: 6px 18px;
+  font-weight: 600;
+  transition: 0.3s ease;
+  border: none;
+}
+
+.btn-eco:hover {
+  background-color: white;
+  color: var(--primary-green);
+  transform: translateY(-2px);
+}
+
+/* ============================= */
+/* Toggler */
+/* ============================= */
+
+.navbar-toggler {
+  border: none;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+.navbar-toggler-icon {
+  filter: invert(1);
+}
+
+/* ============================= */
+/* Mobile Offcanvas */
+/* ============================= */
+
+/* .offcanvas {
+  background: linear-gradient(
+    180deg,
+    var(--primary-green),
+    var(--light-green)
+  );
+  color: white;
+  width: 280px !important;
+  max-width: 80%;
+} */
+
+.offcanvas {
+  background: linear-gradient(
+    180deg,
+    var(--primary-green),
+    var(--light-green)
+  );
+  color: white;
+}
+
+
+
+
+
+.offcanvas .nav-link {
+  color: white !important;
+  margin-bottom: 12px;
+  transition: 0.3s ease;
+}
+
+.offcanvas .nav-link:hover {
+  color: var(--accent-yellow) !important;
+  transform: translateX(5px);
+}
+
+.btn-close {
+  filter: invert(1);
+}
+
+/* ============================= */
+/* REMOVE EXTRA GAP */
+/* ============================= */
+
+/* Ensure no unwanted spacing */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+
+
+/* ============================= */
+/* Mobile Offcanvas - White Theme */
+/* ============================= */
+
+.offcanvas {
+  background: white !important;
+  color: var(--primary-green);
+  width: 280px !important;
+  max-width: 80%;
+}
+
+/* Title */
+.offcanvas-title {
+  color: var(--primary-green) !important;
+}
+
+/* Links */
+.offcanvas .nav-link {
+  color: var(--primary-green) !important;
+  font-weight: 500;
+  margin-bottom: 12px;
+  transition: 0.3s ease;
+}
+
+.offcanvas .nav-link:hover {
+  color: var(--light-green) !important;
+  transform: translateX(5px);
+}
+
+/* Close button */
+.btn-close {
+  filter: none;
+}
