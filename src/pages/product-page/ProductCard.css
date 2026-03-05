@@ -1,0 +1,513 @@
+/* ============================================
+   PRODUCT CARD — Modern Ecommerce Style
+   ============================================ */
+
+.pc-card {
+  position: relative;
+  border-radius: 16px !important;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.pc-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.13);
+}
+
+/* ── IMAGE WRAP ── */
+.pc-img-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: #f5f6fa;
+}
+
+.pc-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s ease;
+}
+
+.pc-card:hover .pc-img {
+  transform: scale(1.07);
+}
+
+/* ── SKELETON ── */
+.pc-skeleton {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #ececec 25%, #f5f5f5 50%, #ececec 75%);
+  background-size: 200% 100%;
+  animation: pc-shimmer 1.4s infinite;
+}
+
+@keyframes pc-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ── NO IMAGE ── */
+.pc-no-img {
+  width: 100%;
+  height: 100%;
+  color: #c0c4cc;
+  background: #f8f9fb;
+}
+
+/* ── BODY ── */
+.pc-body {
+  padding: 18px;
+}
+
+.pc-category {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #6c63ff;
+  margin-bottom: 6px;
+}
+
+.pc-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 8px;
+}
+
+.pc-des {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #131516;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+}
+
+.pc-des::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.pc-desc {
+  font-size: 0.92rem;
+  color: #1a1b1b;
+  line-height: 1.75;
+  margin-bottom: 0;
+}
+
+.pc-price-na {
+  font-size: 0.8rem;
+  color: #aab0bc;
+  font-style: italic;
+}
+
+/* ── FOOTER ── */
+.pc-footer {
+  padding: 16px 18px;
+}
+
+.pc-price {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a1a2e;
+}
+
+/* ── ENQUIRE BUTTON ── */
+.pc-btn {
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 9px 20px;
+  border-radius: 10px;
+  border: none !important;
+  background: linear-gradient(135deg, #0f2744, #1a3a5c);
+  color: #fff !important;
+  letter-spacing: 0.03em;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(15, 39, 68, 0.35);
+}
+
+.pc-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(15, 39, 68, 0.45);
+}
+
+.pc-btn:active {
+  transform: translateY(0);
+}
+/* CARD IMAGE SLIDER BUTTONS */
+.pc-slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.2s;
+  z-index: 2;
+}
+
+.pc-slider-btn:hover {
+  background: rgba(0, 0, 0, 0.65);
+}
+
+.pc-slider-btn.left {
+  left: 10px;
+}
+
+.pc-slider-btn.right {
+  right: 10px;
+}
+
+/* ============================================
+   PRODUCT GRID
+   ============================================ */
+
+.p-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .p-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}
+/* ============================================
+   MODAL — Full Screen Elegant Overlay
+   ============================================ */
+
+.pc-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1050;
+  background: rgba(10, 15, 30, 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  animation: pc-backdrop-in 0.25s ease forwards;
+}
+
+@keyframes pc-backdrop-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── MODAL BOX ── */
+.pc-modal {
+  position: relative;
+  background: #ffffff;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 860px;
+  max-height: 90vh;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.28);
+  animation: pc-modal-in 0.3s cubic-bezier(0.34, 1.36, 0.64, 1) forwards;
+}
+
+@keyframes pc-modal-in {
+  from { opacity: 0; transform: scale(0.92) translateY(20px); }
+  to   { opacity: 1; transform: scale(1)    translateY(0);    }
+}
+
+/* ── CLOSE BUTTON ── */
+.pc-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  z-index: 10;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.08);
+  color: #333;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.pc-modal-close:hover {
+  background: rgba(0, 0, 0, 0.16);
+  transform: rotate(90deg);
+}
+
+/* ── IMAGE SIDE ── */
+.pc-modal-img-wrapper {
+  position: relative;
+  background: #f3f4f8;
+  border-radius: 20px 0 0 20px;
+  overflow: hidden;
+  min-height: 320px;
+  height: 100%;           /* ← fill full modal height */
+}
+.pc-modal-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;     /* ← stretch to wrapper edges */
+  inset: 0;
+  transition: transform 0.5s ease;
+}
+
+
+.pc-modal-img:hover {
+  transform: scale(1.04);
+}
+
+/* ── DETAILS SIDE ── */
+.pc-modal-body {
+  padding: 36px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+}
+
+.pc-modal-title {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #1a1a2e;
+  line-height: 1.3;
+  margin: 0;
+}
+
+.pc-modal-price {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f2744;
+  background: #f0f4ff;
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 8px;
+  width: fit-content;
+}
+
+.pc-modal-desc {
+  font-size: 0.9rem;
+  color: #515c65;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ── ATTRIBUTES ── */
+.pc-modal-attrs {
+  border-top: 1px solid #f0f0f5;
+  padding-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pc-modal-attrs p {
+  font-size: 0.88rem;
+  color: #444;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.pc-modal-attrs strong {
+  color: #1a1a2e;
+}
+
+/* ── ACTIONS ── */
+.pc-modal-actions {
+  margin-top: auto;
+  padding-top: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* ── SCROLLBAR (modal) ── */
+.pc-modal::-webkit-scrollbar,
+.pc-modal-body::-webkit-scrollbar {
+  width: 4px;
+}
+.pc-modal::-webkit-scrollbar-thumb,
+.pc-modal-body::-webkit-scrollbar-thumb {
+  background: #dde1ec;
+  border-radius: 4px;
+}
+
+/* ── RESPONSIVE ── */
+/* @media (max-width: 640px) {
+  .pc-modal {
+    grid-template-columns: 1fr;
+    max-height: 92vh;
+    border-radius: 16px;
+  }
+
+  .pc-modal-img-wrapper {
+    border-radius: 16px 16px 0 0;
+    aspect-ratio: 16 / 9;
+  }
+
+  .pc-modal-body {
+    padding: 22px 18px;
+  }
+} */
+
+/* ── VIEW BUTTON (outline style) ── */
+.pc-btn-outline {
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 9px 20px;
+  border-radius: 10px;
+  border: 2px solid #0f2744 !important;
+  background: transparent;
+  color: #0f2744 !important;
+  letter-spacing: 0.03em;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  white-space: nowrap;
+}
+
+.pc-btn-outline:hover {
+  background: #0f2744;
+  color: #fff !important;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(15, 39, 68, 0.25);
+}
+
+.pc-btn-outline:active {
+  transform: translateY(0);
+}
+/* ── MODAL CLOSE OUTLINE BUTTON ── */
+.btn-outline-secondary {
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 9px 20px;
+  border-radius: 10px;
+  border: 2px solid #6c757d !important;
+  background: transparent;
+  color: #6c757d !important;
+  letter-spacing: 0.03em;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-outline-secondary:hover {
+  background: #0f2744;
+  color: #fff !important;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(108, 117, 125, 0.25);
+}
+
+.btn-outline-secondary:active {
+  transform: translateY(0);
+}
+/* ============================================
+   MODAL — MOBILE RESPONSIVE FIXES
+   ============================================ */
+
+@media (max-width: 640px) {
+  .pc-modal {
+    grid-template-columns: 1fr;        /* stack vertically */
+    max-height: 92vh;
+    border-radius: 16px;
+    width: calc(100% - 0px);           /* full width, no side gaps */
+    margin: 0;
+  }
+
+  .pc-modal-backdrop {
+    padding: 0;                        /* remove side padding that shrinks modal */
+    align-items: flex-end;            /* sheet slides up from bottom */
+  }
+
+  .pc-modal-img-wrapper {
+    border-radius: 16px 16px 0 0;
+    aspect-ratio: 16 / 9;
+    min-height: unset;                 /* ← remove the 320px min-height */
+    height: auto;                      /* let aspect-ratio control height */
+    position: relative;               /* override height: 100% */
+  }
+
+  .pc-modal-img {
+    position: absolute;               /* keep this so it fills the wrapper */
+    inset: 0;
+  }
+
+  .pc-modal-body {
+    padding: 22px 18px;
+  }
+
+  .pc-modal-actions {
+    flex-wrap: wrap;                   /* prevent button overflow */
+  }
+
+  .pc-modal-actions .pc-btn,
+  .pc-modal-actions .pc-btn-outline,
+  .pc-modal-actions .btn-outline-secondary {
+    flex: 1;                           /* buttons share row equally */
+    text-align: center;
+    justify-content: center;
+  }
+}
+/* ── CAPACITY BADGE ── */
+.pc-capacity {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #0f2744;
+  background: #e8f0fe;
+  border: 1px solid #c5d6f8;
+  padding: 4px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.03em;
+  margin: 0;
+  width: fit-content;
+}
+.pc-capacity::before {
+  content: "⚡";
+  font-size: 0.75rem;
+}

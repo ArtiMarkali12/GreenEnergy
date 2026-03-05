@@ -109,8 +109,9 @@
 }
 
 .hero-content h1 {
-  font-size: 3rem;
+  font-size: 3.5rem;
   margin-bottom: 20px;
+  font-weight: 700;
 }
 
 .hero-content p {
@@ -143,7 +144,8 @@
 .section-title {
   font-size: 36px;
   margin-bottom: 50px;
-  color: #1B5E20;
+  color: black !important;
+  font-weight: 700;
   /* margin-top: 70px; */
 }
 
@@ -269,6 +271,7 @@
     margin-bottom: 30px;
     margin-top: 30px;
     font-weight: 700;
+    color: black;
   }
 
   /* Container column layout */
@@ -764,6 +767,7 @@
 .step-content h3 {
   margin-bottom: 10px;
   color: #1B5E20;
+  text-align: start;
 }
 
 .step-content p {
@@ -801,4 +805,21 @@
     left: 0;
     right: auto;
   }
+}
+
+
+
+
+
+.section-title {
+  font-size: 36px;
+  margin-bottom: 50px;
+  color: black !important;
+  font-weight: 700;
+  position: relative;   /* ⭐ important */
+  display: inline-block; /* ⭐ important */
+}
+.section-title::after {
+  display: none !important;
+  content: none !important;
 }

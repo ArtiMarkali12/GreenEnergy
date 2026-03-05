@@ -1,0 +1,140 @@
+/* ===============================
+   CocoCharcoal Page CSS
+=============================== */
+
+/* PAGE BACKGROUND */
+.product-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  background: #f9f9f9;
+}
+
+/* HERO SECTION */
+.hero-section {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.hero-title {
+  font-size: 36px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-top: 20px;
+}
+
+/* PRODUCT CARD */
+.product-container {
+  display: flex;
+  max-width: 1000px;
+  width: 100%;
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+  animation: cardFadeUp 0.8s ease;
+}
+
+/* IMAGE SECTION */
+.product-image-section {
+  flex: 1;
+  background: #1f2a38;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.product-image-section img {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  transition: transform 0.4s ease;
+}
+
+.product-image-section img:hover {
+  transform: scale(1.08) rotate(-2deg);
+}
+
+/* DETAILS SECTION */
+.product-details-section {
+  flex: 1;
+  padding: 40px;
+}
+
+/* ATTRIBUTE GRID */
+.attributes-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ATTRIBUTE CARD */
+.attribute-card {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
+}
+
+.attribute-card h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #34495e;
+}
+
+.attribute-card p {
+  font-size: 16px;
+  font-weight: 500;
+  color: #7f8c8d;
+}
+
+/* LOADING */
+.product-loading {
+  font-size: 22px;
+  text-align: center;
+  padding: 100px;
+}
+
+/* ANIMATION */
+@keyframes cardFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 900px) {
+  .product-container {
+    flex-direction: column;
+  }
+
+  .product-image-section,
+  .product-details-section {
+    padding: 30px;
+  }
+
+  .hero-title {
+    font-size: 28px;
+  }
+
+  .attribute-card h4,
+  .attribute-card p {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 500px) {
+  .attribute-card {
+    flex-direction: column;
+    gap: 6px;
+  }
+}

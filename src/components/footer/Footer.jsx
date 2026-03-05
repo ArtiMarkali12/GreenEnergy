@@ -38,9 +38,9 @@ export default function Footer() {
       </div>
 
       {/* Bottom Bar */}
-      <div className="footer-bottom">
+      {/* <div className="footer-bottom">
         © {new Date().getFullYear()} GreenEnergy. All Rights Reserved.
-      </div>
+      </div> */}
     </footer>
   );
 }

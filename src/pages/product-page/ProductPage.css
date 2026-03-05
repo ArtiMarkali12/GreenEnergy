@@ -1,0 +1,240 @@
+.spice-card {
+  background: #f5f5f5;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transition: 0.3s ease;
+  height: 100%;
+}
+
+.spice-card:hover {
+  transform: translateY(-5px);
+}
+
+.spice-img {
+  flex: 1;
+  min-height: 300px;
+}
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+/* ===========================
+   PAGE WRAPPER
+=========================== */
+.p-page {
+  min-height: 100vh;
+  background: var(--cream);
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* ===========================
+   BACK BUTTON
+=========================== */
+.p-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 8px 16px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-mid);
+  cursor: pointer;
+  transition: all 0.22s ease;
+  font-family: 'DM Sans', sans-serif;
+  margin-bottom: 28px;
+}
+
+.p-back-btn:hover {
+  border-color: var(--spice-red);
+  color: var(--spice-red);
+  background: rgba(192, 57, 43, 0.04);
+  transform: translateX(-2px);
+}
+
+/* ===========================
+   PAGE HEADER
+=========================== */
+.p-header {
+  padding: 48px 0 36px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 40px;
+}
+
+.p-page-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin: 0 0 8px;
+  line-height: 1.15;
+}
+
+.p-page-subtitle {
+  font-size: 0.93rem;
+  color: var(--text-light);
+  margin: 0;
+}
+
+/* ===========================
+   PRODUCT GRID
+=========================== */
+.p-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  padding-bottom: 60px;
+}
+
+/* ===========================
+   STATUS STATES (loading / empty / error)
+=========================== */
+.p-status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  text-align: center;
+  gap: 12px;
+}
+
+.p-status-icon {
+  font-size: 3rem;
+  margin-bottom: 8px;
+}
+
+.p-status h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  color: var(--text-dark);
+  margin: 0;
+}
+
+.p-status p {
+  color: var(--text-light);
+  font-size: 0.92rem;
+  margin: 0;
+}
+
+/* ===========================
+   RETRY BUTTON
+=========================== */
+.p-retry-btn {
+  background: var(--spice-red);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 22px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background 0.2s ease;
+}
+
+.p-retry-btn:hover {
+  background: var(--spice-red-dark);
+}
+
+/* ===========================
+   LOADING SPINNER
+=========================== */
+.p-spinner-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 80px 0;
+}
+
+.p-spinner {
+  width: 44px;
+  height: 44px;
+  border: 3px solid var(--border);
+  border-top-color: var(--spice-red);
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+@media (max-width: 768px) {
+  .p-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .p-page-title {
+    font-size: 1.8rem;
+  }
+
+  .p-header {
+    padding: 32px 0 24px;
+    margin-bottom: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .p-page-title {
+    font-size: 1.5rem;
+  }
+}
+.spice-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.spice-content {
+  flex: 1;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.spice-content h3 {
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.spice-content p {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* Modal Styling */
+.custom-modal {
+  background: #000;
+  color: #fff;
+  border-radius: 15px;
+}
+
+.modal-img {
+  width: 100%;
+  border-radius: 15px;
+  object-fit: cover;
+  height: 250px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .spice-card {
+    flex-direction: column !important;
+  }
+
+  .spice-img {
+    height: 220px;
+  }
+
+  .modal-img {
+    height: 200px;
+    margin-bottom: 15px;
+  }
+}

@@ -323,7 +323,7 @@ export default function Home() {
 
         <div className="services-container">
           <div className="service-card">
-            <h3>Coconut Shell</h3>
+            <h3>Dry Coconut Shell</h3>
             <p>
               High-quality coconut shells collected from trusted sources.
               Ideal for charcoal production and biomass processing.
@@ -360,7 +360,7 @@ export default function Home() {
 
   <div className="spec-cards">
     <div className="spec-card">
-      <h3>6–8 mm</h3>
+      <h3>8-12 mm</h3>
       <span>Diameter</span>
     </div>
 
