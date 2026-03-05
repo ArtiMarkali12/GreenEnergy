@@ -119,37 +119,65 @@ const CocoCharcoal = () => {
     return `${API_BASE_URL}/${img.replace(/^\/+/, "")}`;
   };
 
-  if (loading) return <div className="product-loading">Loading Product...</div>;
-  if (!product) return <div className="product-loading">Product Not Found</div>;
+  if (loading) return <div className="coco-charcoal-loading">Loading Product...</div>;
+  if (!product) return <div className="coco-charcoal-loading">Product Not Found</div>;
 
   return (
-    <div className="product-page">
-      {/* HERO */}
-      <div className="hero-section">
-        <h1 className="hero-title">{categoryName}</h1>
+    <div className="coco-charcoal-page">
+      {/* HERO SECTION */}
+      <div className="coco-charcoal-hero">
+        <h1 className="coco-charcoal-title">{categoryName}</h1>
+        <p className="coco-charcoal-subtitle">Premium Natural Charcoal</p>
       </div>
 
-      {/* PRODUCT CARD */}
-      <div className="product-container">
-        <div className="product-image-section">
-          <img
-            src={getImageUrl()}
-            alt={product.name}
-            onError={(e) => (e.target.src = "/default-product.jpg")}
-          />
-        </div>
+      {/* PRODUCT CARD - CENTRALIZED BADGE LAYOUT */}
+      <div className="coco-charcoal-container">
+        {/* TOP DECORATIVE BAR */}
+        <div className="coco-charcoal-top-bar"></div>
 
-        <div className="product-details-section">
-          <div className="attributes-grid">
-            {product.attributes?.map((attr) => (
-              <div className="attribute-card" key={attr.attributeId}>
-                <h4>{attr.attributeKey}</h4>
-                <p>
-                  {renderAttributeValue(attr.values)}
-                  {attr.unit ? ` ${attr.unit}` : ""}
-                </p>
+        {/* MAIN CONTENT */}
+        <div className="coco-charcoal-main">
+          {/* IMAGE SECTION - TOP CENTER */}
+          <div className="coco-charcoal-image-section">
+            <div className="coco-charcoal-image-frame">
+              <img
+                src={getImageUrl()}
+                alt={product.name}
+                onError={(e) => (e.target.src = "/default-product.jpg")}
+              />
+            </div>
+
+            {/* FEATURE BADGES */}
+            <div className="coco-charcoal-feature-badges">
+              <div className="coco-charcoal-feature-badge">
+                <span className="icon">🌿</span>
+                <span className="text">100% Natural</span>
               </div>
-            ))}
+              <div className="coco-charcoal-feature-badge">
+                <span className="icon">♻️</span>
+                <span className="text">Eco Friendly</span>
+              </div>
+              <div className="coco-charcoal-feature-badge">
+                <span className="icon">🔥</span>
+                <span className="text">Long Burning</span>
+              </div>
+            </div>
+          </div>
+
+          {/* DETAILS SECTION - BOTTOM */}
+          <div className="coco-charcoal-details">
+            <h2>Product Specifications</h2>
+            <div className="coco-charcoal-attributes">
+              {product.attributes?.map((attr) => (
+                <div className="coco-charcoal-attribute-card" key={attr.attributeId}>
+                  <h4>{attr.attributeKey}</h4>
+                  <p>
+                    {renderAttributeValue(attr.values)}
+                    {attr.unit ? ` ${attr.unit}` : ""}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

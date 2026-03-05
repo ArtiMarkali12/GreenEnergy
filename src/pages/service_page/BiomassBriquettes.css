@@ -1,130 +1,309 @@
 /* ===============================
    Biomass Briquettes Page CSS
-   (Same styling as DryCoconutShell.css)
+   Green Eco-Friendly Theme - UNIQUE CLASSES
 =============================== */
 
 /* PAGE BACKGROUND */
-.product-page {
+.biomass-briquettes-page {
   min-height: 100vh;
+  padding: 70px 20px 80px;
+  background: linear-gradient(180deg, #f1f8e9 0%, #e8f5e9 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
-  background: linear-gradient(180deg, #f7f9fc, #ffffff);
+  margin-top: 0px;
 }
 
 /* HERO SECTION */
-.hero-section {
-  width: 100%;
+.biomass-briquettes-hero {
   text-align: center;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
+  position: relative;
 }
 
-.hero-title {
-  font-size: 42px;
-  font-weight: 700;
-  color: #1f2937;
+.biomass-briquettes-title {
+  font-size: 56px;
+  font-weight: 900;
+  background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 50%, #4caf50 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 4px;
+  margin: 0;
+  text-transform: uppercase;
 }
 
-/* PRODUCT CARD */
-.product-container {
-  display: flex;
+.biomass-briquettes-hero::after {
+  content: '';
+  display: block;
+  width: 120px;
+  height: 5px;
+  background: linear-gradient(90deg, #1b5e20, #4caf50);
+  margin: 25px auto 0;
+  border-radius: 3px;
+}
+
+/* PRODUCT CARD - Vertical Layout */
+.biomass-briquettes-container {
+  display: grid;
+  grid-template-columns: 1fr;
   max-width: 1100px;
   width: 100%;
-  background: #fff;
-  border-radius: 18px;
+  background: #ffffff;
+  border-radius: 35px;
   overflow: hidden;
-
-  /* Elevation */
-  margin-top: -20px;
-  transform: translateY(40px); /* start below */
-  opacity: 0;
-  box-shadow: 0 35px 80px rgba(0, 0, 0, 0.22);
-
-  /* Animation */
-  animation: cardSlideUp 0.8s ease forwards;
-
-  transition: all 0.3s ease;
+  box-shadow: 0 30px 90px rgba(27, 94, 32, 0.15);
+  border: 2px solid #c8e6c9;
+  animation: premiumFadeIn 1s ease;
+  position: relative;
 }
 
-.product-container:hover {
-  transform: translateY(-26px);
-  box-shadow: 0 45px 100px rgba(0, 0, 0, 0.28);
+.biomass-briquettes-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, #1b5e20, #4caf50, #66bb6a, #4caf50, #1b5e20);
+  background-size: 200% 100%;
+  animation: gradientFlow 3s ease infinite;
 }
 
-/* IMAGE SECTION */
-.product-image-section {
-  flex: 1;
-  background: #2c3443;
+@keyframes gradientFlow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* IMAGE SECTION - Top */
+.biomass-briquettes-image-section {
+  background: linear-gradient(180deg, #f1f8e9 0%, #dcedc8 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40px;
+  padding: 70px 50px;
+  position: relative;
+  overflow: hidden;
 }
 
-.product-image-section img {
+.biomass-briquettes-image-section::before {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(76, 175, 80, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.biomass-briquettes-image-section img {
   width: 100%;
-  max-width: 420px;
+  max-width: 550px;
   height: auto;
   object-fit: contain;
+  border-radius: 25px;
+  z-index: 1;
+  box-shadow: 0 15px 50px rgba(27, 94, 32, 0.2);
+  border: 3px solid #ffffff;
 }
 
-/* DETAILS SECTION */
-.product-details-section {
-  flex: 1;
-  padding: 40px;
-  max-height: 650px;
-  overflow-y: auto;
-}
-
-/* ATTRIBUTES */
-.attributes-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.attribute-card {
-  display: grid;
-  grid-template-columns: 180px 1fr;
-  border-bottom: 1px solid #eee;
-  padding: 12px 0;
-}
-
-.attribute-card h4 {
-  font-size: 18px;
+/* BADGE */
+.biomass-briquettes-badge {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  background: linear-gradient(135deg, #1b5e20, #4caf50);
+  color: #ffffff;
+  padding: 12px 25px;
+  border-radius: 30px;
+  font-size: 14px;
   font-weight: 700;
-  color: #1f2937;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  box-shadow: 0 8px 25px rgba(27, 94, 32, 0.3);
+  z-index: 2;
 }
 
-.attribute-card p {
-  font-size: 17px;
-  font-weight: 500;
-  color: #444;
-  line-height: 1.7;
+/* DETAILS SECTION - Bottom */
+.biomass-briquettes-details {
+  padding: 50px 60px;
+  background: #ffffff;
 }
 
-/* CARD SLIDE UP ANIMATION */
-@keyframes cardSlideUp {
+.biomass-briquettes-details h2 {
+  font-size: 32px;
+  font-weight: 800;
+  color: #1b5e20;
+  margin: 0 0 35px 0;
+  padding-bottom: 20px;
+  border-bottom: 3px dashed #c8e6c9;
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+/* ATTRIBUTES GRID */
+.biomass-briquettes-attributes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+}
+
+/* ATTRIBUTE CARD */
+.biomass-briquettes-attribute-card {
+  background: linear-gradient(145deg, #f1f8e9 0%, #e8f5e9 100%);
+  padding: 30px 25px;
+  border-radius: 20px;
+  border: 2px solid #c8e6c9;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(27, 94, 32, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.biomass-briquettes-attribute-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background: linear-gradient(180deg, #1b5e20, #4caf50);
+}
+
+.biomass-briquettes-attribute-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(27, 94, 32, 0.2);
+  border-color: #81c784;
+}
+
+.biomass-briquettes-attribute-card h4 {
+  font-size: 13px;
+  font-weight: 800;
+  color: #2e7d32;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0 0 12px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.biomass-briquettes-attribute-card h4::before {
+  content: '🌿';
+  font-size: 18px;
+}
+
+.biomass-briquettes-attribute-card p {
+  font-size: 19px;
+  font-weight: 700;
+  color: #2d3748;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* LOADING */
+.biomass-briquettes-loading {
+  font-size: 26px;
+  text-align: center;
+  padding: 100px;
+  color: #1b5e20;
+  font-weight: 700;
+  background: linear-gradient(135deg, #f1f8e9, #e8f5e9);
+  border-radius: 30px;
+  box-shadow: 0 15px 50px rgba(27, 94, 32, 0.15);
+}
+
+/* ANIMATIONS */
+@keyframes premiumFadeIn {
   from {
-    transform: translateY(40px);
     opacity: 0;
+    transform: translateY(40px) scale(0.95);
   }
   to {
-    transform: translateY(0);
     opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }
 
 /* MOBILE RESPONSIVE */
-@media (max-width: 900px) {
-  .product-container {
-    flex-direction: column;
+@media (max-width: 1024px) {
+  .biomass-briquettes-image-section {
+    padding: 60px 40px;
+  }
+
+  .biomass-briquettes-image-section img {
+    max-width: 450px;
+  }
+
+  .biomass-briquettes-details {
+    padding: 50px 40px;
+  }
+
+  .biomass-briquettes-attributes {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .biomass-briquettes-title {
+    font-size: 42px;
+    letter-spacing: 2px;
+  }
+
+  .biomass-briquettes-page {
+    padding: 100px 15px 60px;
+  }
+
+  .biomass-briquettes-attributes {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .biomass-briquettes-details {
+    padding: 40px 30px;
+  }
+
+  .biomass-briquettes-image-section {
+    padding: 50px 30px;
+  }
+
+  .biomass-briquettes-badge {
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    font-size: 12px;
   }
 }
 
 @media (max-width: 500px) {
-  .attribute-card {
-    grid-template-columns: 1fr;
+  .biomass-briquettes-title {
+    font-size: 32px;
+  }
+
+  .biomass-briquettes-hero::after {
+    width: 80px;
+  }
+
+  .biomass-briquettes-attribute-card {
+    padding: 25px 20px;
+  }
+
+  .biomass-briquettes-attribute-card h4 {
+    font-size: 11px;
+    letter-spacing: 1px;
+  }
+
+  .biomass-briquettes-attribute-card p {
+    font-size: 16px;
+  }
+
+  .biomass-briquettes-details h2 {
+    font-size: 24px;
+  }
+
+  .biomass-briquettes-image-section img {
+    border-radius: 15px;
   }
 }

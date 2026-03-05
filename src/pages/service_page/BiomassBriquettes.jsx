@@ -153,12 +153,12 @@ const BiomassBriquettes = () => {
   };
 
   if (loading) {
-    return <div className="product-loading">Loading Product...</div>;
+    return <div className="biomass-briquettes-loading">Loading Product...</div>;
   }
 
   if (error) {
     return (
-      <div className="product-loading">
+      <div className="biomass-briquettes-loading">
         <h2>⚠️ {error}</h2>
         <p style={{ marginTop: '20px', fontSize: '14px', color: '#666' }}>
           Check browser console (F12) for detailed logs
@@ -168,21 +168,24 @@ const BiomassBriquettes = () => {
   }
 
   if (!product) {
-    return <div className="product-loading">Product Not Found</div>;
+    return <div className="biomass-briquettes-loading">Product Not Found</div>;
   }
 
   return (
-    <div className="product-page">
+    <div className="biomass-briquettes-page">
       {/* HERO SECTION */}
-      <div className="hero-section">
-        <h1 className="hero-title">
+      <div className="biomass-briquettes-hero">
+        <h1 className="biomass-briquettes-title">
           {categoryName}
         </h1>
       </div>
 
       {/* PRODUCT CARD */}
-      <div className="product-container">
-        <div className="product-image-section">
+      <div className="biomass-briquettes-container">
+        {/* BADGE */}
+        <div className="biomass-briquettes-badge">Eco-Friendly</div>
+
+        <div className="biomass-briquettes-image-section">
           <img
             src={getImageUrl()}
             alt={product.name}
@@ -190,10 +193,11 @@ const BiomassBriquettes = () => {
           />
         </div>
 
-        <div className="product-details-section">
-          <div className="attributes-grid">
+        <div className="biomass-briquettes-details">
+          <h2>Product Specifications</h2>
+          <div className="biomass-briquettes-attributes">
             {product.attributes?.map((attr) => (
-              <div className="attribute-card" key={attr.attributeId}>
+              <div className="biomass-briquettes-attribute-card" key={attr.attributeId}>
                 <h4>{attr.attributeKey}</h4>
                 <p>
                   {renderAttributeValue(attr.values)}

@@ -1,140 +1,375 @@
 /* ===============================
-   CocoCharcoal Page CSS
+   Coconut Charcoal Page CSS
+   Green Theme - Centralized Badge Layout
 =============================== */
 
 /* PAGE BACKGROUND */
-.product-page {
+.coco-charcoal-page {
   min-height: 100vh;
+  padding: 90px 20px 80px;
+  background: #ffffff;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px 20px;
-  background: #f9f9f9;
 }
 
 /* HERO SECTION */
-.hero-section {
-  width: 100%;
+.coco-charcoal-hero {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 60px;
 }
 
-.hero-title {
-  font-size: 36px;
-  font-weight: 700;
-  color: #2c3e50;
-  margin-top: 20px;
+.coco-charcoal-title {
+  font-size: 54px;
+  font-weight: 900;
+  background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 50%, #4caf50 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 4px;
+  margin: 0;
+  text-transform: uppercase;
 }
 
-/* PRODUCT CARD */
-.product-container {
-  display: flex;
-  max-width: 1000px;
-  width: 100%;
-  background: #fff;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
-  animation: cardFadeUp 0.8s ease;
+.coco-charcoal-hero::after {
+  content: '';
+  display: block;
+  width: 140px;
+  height: 5px;
+  background: linear-gradient(90deg, #1b5e20, #4caf50);
+  margin: 25px auto 0;
+  border-radius: 3px;
 }
 
-/* IMAGE SECTION */
-.product-image-section {
-  flex: 1;
-  background: #1f2a38;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 40px;
-}
-
-.product-image-section img {
-  width: 100%;
-  max-width: 420px;
-  height: auto;
-  transition: transform 0.4s ease;
-}
-
-.product-image-section img:hover {
-  transform: scale(1.08) rotate(-2deg);
-}
-
-/* DETAILS SECTION */
-.product-details-section {
-  flex: 1;
-  padding: 40px;
-}
-
-/* ATTRIBUTE GRID */
-.attributes-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-/* ATTRIBUTE CARD */
-.attribute-card {
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 1px solid #eee;
-  padding: 10px 0;
-}
-
-.attribute-card h4 {
-  font-size: 16px;
-  font-weight: 700;
-  color: #34495e;
-}
-
-.attribute-card p {
-  font-size: 16px;
+.coco-charcoal-subtitle {
+  font-size: 17px;
+  color: #66bb6a;
   font-weight: 500;
-  color: #7f8c8d;
+  margin-top: 20px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
 }
 
-/* LOADING */
-.product-loading {
-  font-size: 22px;
-  text-align: center;
-  padding: 100px;
+/* PRODUCT CARD - Centralized Layout with Badge Grid */
+.coco-charcoal-container {
+  max-width: 1200px;
+  width: 100%;
+  background: #ffffff;
+  border-radius: 50px;
+  overflow: hidden;
+  box-shadow: 0 40px 120px rgba(27, 94, 32, 0.15);
+  border: 3px solid #e8f5e9;
+  animation: zoomIn 1s ease;
+  position: relative;
 }
 
-/* ANIMATION */
-@keyframes cardFadeUp {
+@keyframes zoomIn {
   from {
     opacity: 0;
-    transform: translateY(40px) scale(0.95);
+    transform: scale(0.9);
   }
   to {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: scale(1);
   }
 }
 
+/* TOP DECORATIVE BAR */
+.coco-charcoal-top-bar {
+  height: 8px;
+  background: linear-gradient(90deg, #1b5e20, #4caf50, #66bb6a, #4caf50, #1b5e20);
+  background-size: 200% 100%;
+  animation: gradientSlide 4s ease infinite;
+}
+
+@keyframes gradientSlide {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* MAIN CONTENT - Vertical Stack */
+.coco-charcoal-main {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+/* IMAGE SECTION - Top Center */
+.coco-charcoal-image-section {
+  background: linear-gradient(180deg, #f1f8e9 0%, #dcedc8 100%);
+  padding: 60px 40px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.coco-charcoal-image-frame {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 8px solid #ffffff;
+  box-shadow: 0 25px 70px rgba(27, 94, 32, 0.25);
+  background: #ffffff;
+}
+
+.coco-charcoal-image-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  transition: transform 0.5s ease;
+}
+
+.coco-charcoal-image-frame:hover img {
+  transform: scale(1.08);
+}
+
+/* Rotating Border Ring */
+.coco-charcoal-image-frame::before {
+  content: '';
+  position: absolute;
+  inset: -15px;
+  border-radius: 50%;
+  border: 3px dashed #81c784;
+  animation: spin 20s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Feature Badges - Below Image */
+.coco-charcoal-feature-badges {
+  display: flex;
+  gap: 20px;
+  margin-top: 35px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.coco-charcoal-feature-badge {
+  background: #ffffff;
+  padding: 18px 28px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 10px 30px rgba(27, 94, 32, 0.12);
+  border: 2px solid #c8e6c9;
+  transition: all 0.3s ease;
+}
+
+.coco-charcoal-feature-badge:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(27, 94, 32, 0.2);
+  border-color: #81c784;
+}
+
+.coco-charcoal-feature-badge .icon {
+  font-size: 26px;
+}
+
+.coco-charcoal-feature-badge .text {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1b5e20;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* DETAILS SECTION - Bottom */
+.coco-charcoal-details {
+  padding: 60px 70px;
+  background: #ffffff;
+}
+
+.coco-charcoal-details h2 {
+  font-size: 30px;
+  font-weight: 800;
+  color: #1b5e20;
+  margin: 0 0 40px 0;
+  padding-bottom: 20px;
+  border-bottom: 3px solid #e8f5e9;
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+/* ATTRIBUTES GRID */
+.coco-charcoal-attributes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+/* ATTRIBUTE CARD - Compact Design */
+.coco-charcoal-attribute-card {
+  background: linear-gradient(145deg, #f1f8e9 0%, #f9fbe7 100%);
+  padding: 25px 20px;
+  border-radius: 20px;
+  border: 2px solid #dcedc8;
+  transition: all 0.35s ease;
+  box-shadow: 0 8px 25px rgba(27, 94, 32, 0.08);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.coco-charcoal-attribute-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #1b5e20, #4caf50);
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+
+.coco-charcoal-attribute-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(27, 94, 32, 0.18);
+  border-color: #81c784;
+}
+
+.coco-charcoal-attribute-card:hover::before {
+  transform: scaleX(1);
+}
+
+.coco-charcoal-attribute-card h4 {
+  font-size: 12px;
+  font-weight: 800;
+  color: #558b2f;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0 0 12px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.coco-charcoal-attribute-card h4::before {
+  content: '✓';
+  font-size: 16px;
+  color: #2e7d32;
+  font-weight: 900;
+}
+
+.coco-charcoal-attribute-card p {
+  font-size: 17px;
+  font-weight: 700;
+  color: #1b5e20;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* LOADING */
+.coco-charcoal-loading {
+  font-size: 26px;
+  text-align: center;
+  padding: 100px;
+  color: #1b5e20;
+  font-weight: 700;
+  background: linear-gradient(135deg, #f1f8e9, #e8f5e9);
+  border-radius: 30px;
+  box-shadow: 0 15px 50px rgba(27, 94, 32, 0.15);
+}
+
 /* MOBILE RESPONSIVE */
-@media (max-width: 900px) {
-  .product-container {
-    flex-direction: column;
+@media (max-width: 1024px) {
+  .coco-charcoal-attributes {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  .product-image-section,
-  .product-details-section {
-    padding: 30px;
+  .coco-charcoal-details {
+    padding: 50px 40px;
   }
 
-  .hero-title {
-    font-size: 28px;
+  .coco-charcoal-image-frame {
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .coco-charcoal-title {
+    font-size: 42px;
   }
 
-  .attribute-card h4,
-  .attribute-card p {
-    font-size: 15px;
+  .coco-charcoal-page {
+    padding: 80px 15px 60px;
+  }
+
+  .coco-charcoal-attributes {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .coco-charcoal-details {
+    padding: 40px 30px;
+  }
+
+  .coco-charcoal-image-section {
+    padding: 50px 30px;
+  }
+
+  .coco-charcoal-image-frame {
+    max-width: 320px;
+  }
+
+  .coco-charcoal-feature-badges {
+    gap: 15px;
+  }
+
+  .coco-charcoal-feature-badge {
+    padding: 15px 22px;
+  }
+
+  .coco-charcoal-feature-badge .text {
+    font-size: 11px;
   }
 }
 
 @media (max-width: 500px) {
-  .attribute-card {
+  .coco-charcoal-title {
+    font-size: 32px;
+  }
+
+  .coco-charcoal-subtitle {
+    font-size: 14px;
+  }
+
+  .coco-charcoal-attributes {
+    grid-template-columns: 1fr;
+  }
+
+  .coco-charcoal-attribute-card {
+    padding: 22px 18px;
+  }
+
+  .coco-charcoal-attribute-card h4 {
+    font-size: 11px;
+  }
+
+  .coco-charcoal-attribute-card p {
+    font-size: 16px;
+  }
+
+  .coco-charcoal-details h2 {
+    font-size: 22px;
+  }
+
+  .coco-charcoal-feature-badges {
     flex-direction: column;
-    gap: 6px;
+    align-items: center;
+  }
+
+  .coco-charcoal-image-frame {
+    max-width: 280px;
   }
 }

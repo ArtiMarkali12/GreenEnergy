@@ -338,67 +338,56 @@ const DryCoconutShell = () => {
   };
 
   if (loading) {
-    return <div className="product-loading">Loading Product...</div>;
+    return <div className="dry-coconut-loading">Loading Product...</div>;
   }
 
   if (!product) {
-    return <div className="product-loading">Product Not Found</div>;
+    return <div className="dry-coconut-loading">Product Not Found</div>;
   }
 
   return (
-
-    <div className="product-page">
-
+    <div className="dry-coconut-page">
       {/* HERO SECTION */}
-      <div className="hero-section">
-
-        <h1 className="hero-title">
+      <div className="dry-coconut-hero">
+        <h1 className="dry-coconut-title">
           {categoryName}
         </h1>
-
+        {/* <p className="dry-coconut-subtitle">Premium Quality Product</p> */}
       </div>
 
-      {/* PRODUCT CARD */}
+      {/* PRODUCT CARD - VERTICAL SHOWCASE */}
+      <div className="dry-coconut-container">
+        {/* IMAGE SECTION - TOP */}
+        <div className="dry-coconut-image-section">
+          <div className="dry-coconut-image-wrapper">
+            <img
+              src={getImageUrl()}
+              alt={product.name}
+              onError={(e) => (e.target.src = "/default-product.jpg")}
+            />
+          </div>
 
-      <div className="product-container">
-
-        <div className="product-image-section">
-
-          <img
-            src={getImageUrl()}
-            alt={product.name}
-            onError={(e) => (e.target.src = "/default-product.jpg")}
-          />
-
+          {/* INFO RIBBON */}
+          {/* <div className="dry-coconut-info-ribbon">Premium Quality</div> */}
         </div>
 
-        <div className="product-details-section">
-
-          <div className="attributes-grid">
-
+        {/* DETAILS SECTION - BOTTOM */}
+        <div className="dry-coconut-details">
+          <h2>Product Specifications</h2>
+          <div className="dry-coconut-attributes">
             {product.attributes?.map((attr) => (
-
-              <div className="attribute-card" key={attr.attributeId}>
-
+              <div className="dry-coconut-attribute-card" key={attr.attributeId}>
                 <h4>{attr.attributeKey}</h4>
-
                 <p>
                   {renderAttributeValue(attr.values)}
                   {attr.unit ? ` ${attr.unit}` : ""}
                 </p>
-
               </div>
-
             ))}
-
           </div>
-
         </div>
-
       </div>
-
     </div>
-
   );
 
 };

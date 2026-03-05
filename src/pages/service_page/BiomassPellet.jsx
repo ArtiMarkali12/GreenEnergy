@@ -153,12 +153,12 @@ const BiomassPellet = () => {
   };
 
   if (loading) {
-    return <div className="product-loading">Loading Product...</div>;
+    return <div className="biomass-pellet-loading">Loading Product...</div>;
   }
 
   if (error) {
     return (
-      <div className="product-loading">
+      <div className="biomass-pellet-loading">
         <h2>⚠️ {error}</h2>
         <p style={{ marginTop: '20px', fontSize: '14px', color: '#666' }}>
           Check browser console (F12) for detailed logs
@@ -168,32 +168,40 @@ const BiomassPellet = () => {
   }
 
   if (!product) {
-    return <div className="product-loading">Product Not Found</div>;
+    return <div className="biomass-pellet-loading">Product Not Found</div>;
   }
 
   return (
-    <div className="product-page">
+    <div className="biomass-pellet-page">
       {/* HERO SECTION */}
-      <div className="hero-section">
-        <h1 className="hero-title">
+      <div className="biomass-pellet-hero">
+        <h1 className="biomass-pellet-title">
           {categoryName}
         </h1>
+        <p className="biomass-pellet-subtitle">Premium Quality Biofuel</p>
       </div>
 
       {/* PRODUCT CARD */}
-      <div className="product-container">
-        <div className="product-image-section">
-          <img
-            src={getImageUrl()}
-            alt={product.name}
-            onError={(e) => (e.target.src = "/default-product.jpg")}
-          />
+      <div className="biomass-pellet-container">
+        {/* IMAGE SECTION WITH CIRCULAR FRAME */}
+        <div className="biomass-pellet-image-section">
+          <div className="biomass-pellet-image-circle">
+            <img
+              src={getImageUrl()}
+              alt={product.name}
+              onError={(e) => (e.target.src = "/default-product.jpg")}
+            />
+          </div>
+          {/* ECO BADGE */}
+          <div className="biomass-pellet-eco-badge">100% Natural</div>
         </div>
 
-        <div className="product-details-section">
-          <div className="attributes-grid">
+        {/* DETAILS SECTION */}
+        <div className="biomass-pellet-details">
+          <h2>Product Specifications</h2>
+          <div className="biomass-pellet-attributes">
             {product.attributes?.map((attr) => (
-              <div className="attribute-card" key={attr.attributeId}>
+              <div className="biomass-pellet-attribute-card" key={attr.attributeId}>
                 <h4>{attr.attributeKey}</h4>
                 <p>
                   {renderAttributeValue(attr.values)}
