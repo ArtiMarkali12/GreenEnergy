@@ -2,6 +2,8 @@
   --primary: #0f172a;
   --accent: #00b894;
   --text-dark: #1e293b;
+  --navbar-bg: #1b5e20;
+  --navbar-hover: #4caf50;
 }
 
 /* Navbar */
@@ -9,10 +11,11 @@
   position: sticky;
   top: 0;
   width: 100%;
-  padding: 15px 0;
-  background: rgba(205, 251, 205, 0.75);
+  padding: 0;
+  margin: 0;
+  background: linear-gradient(135deg, #1b5e20, #2e7d32);
   backdrop-filter: blur(12px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
   z-index: 1000;
 }
 
@@ -23,6 +26,7 @@
   align-items: center;
   justify-content: space-between;
   position: relative;
+  padding: 12px 0;
 }
 
 /* Logo */
@@ -34,18 +38,22 @@
 .nav-links.desktop {
   list-style: none;
   display: flex;
-  gap: 40px;
+  gap: 25px;
+  margin: 0;
+  padding: 0;
   position: absolute;
-  left: 50%;
+  left: 42%;
   transform: translateX(-50%);
 }
 
 .nav-links.desktop li a {
   text-decoration: none;
-  color: var(--text-dark);
-  font-weight: 500;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 17px;
   position: relative;
   transition: 0.3s;
+  padding: 5px 12px;
 }
 
 /* Underline Animation */
@@ -53,7 +61,7 @@
   content: "";
   width: 0%;
   height: 2px;
-  background: var(--accent);
+  background: #ffffff;
   position: absolute;
   left: 0;
   bottom: -6px;
@@ -65,7 +73,7 @@
 }
 
 .nav-links.desktop li a:hover {
-  color: var(--accent);
+  color: #a5d6a7;
 }
 
 /* Hamburger */
@@ -79,7 +87,8 @@
 .hamburger span {
   width: 25px;
   height: 3px;
-  background: var(--primary);
+  background: #ffffff;
+  border-radius: 2px;
 }
 
 /* Mobile Menu */
@@ -177,7 +186,7 @@ body {
 .hamburger span {
   width: 20px;
   height: 2px;
-  background: #0f172a;   /* direct dark color use kar */
+  background: #ffffff;
   border-radius: 2px;
   transition: 0.3s ease;
 }
@@ -205,6 +214,7 @@ body {
 
 .dropdown-title {
   cursor: pointer;
+  color: #ffffff !important;
 }
 
 .dropdown-menu {
@@ -218,6 +228,7 @@ body {
   display: none;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   border-radius: 8px;
+  z-index: 1001;
 }
 
 .dropdown-menu li {
@@ -226,8 +237,16 @@ body {
 
 .dropdown-menu li a {
   text-decoration: none;
-  color: #333;
+  color: #000000 !important;
   display: block;
+  font-weight: 500;
+  background: transparent !important;
+}
+
+.dropdown-menu li a:hover {
+  color: #2e7d32 !important;
+  background: #f1f8e9 !important;
+  border-radius: 4px;
 }
 
 .dropdown:hover .dropdown-menu {

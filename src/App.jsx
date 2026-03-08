@@ -12,6 +12,8 @@ import BiomassPellet from "./pages/service_page/BiomassPellet";
 import DryCoconutShell from "./pages/service_page/DryCoconutShell";
 import CocoCharcoal from "./pages/service_page/CocoCharcoal";
 import ActivatedCharcoal from "./pages/service_page/ActivatedCharcoal";
+import Cocopeat from "./pages/service_page/Cocopeat";
+import Certificate from "./pages/certificate/Certificate";
 
 function App() {
   return (
@@ -30,6 +32,8 @@ function App() {
         <Route path="/product/dry-coconut-shell" element={<DryCoconutShell />} />
         <Route path="/product/coconut-shell-charcoal" element={<CocoCharcoal />} />
         <Route path="/product/activated-charcoal" element={<ActivatedCharcoal />} />
+        <Route path="/product/cocopeat" element={<Cocopeat />} />
+        <Route path="/certificates" element={<Certificate />} />
       </Routes>
 
       <Footer />

@@ -1,222 +1,245 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./ActivatedCharcoal.css";
 
+const API_BASE = import.meta.env.VITE_API_BASE_URL;
+const DOMAIN_NAME = import.meta.env.VITE_DOMAIN_NAME;
+
+function formatKey(key) {
+  return key.replace(/_/g, " ").replace(/\b\w/g, (l) => l.toUpperCase());
+}
+
+function normalizeAttributes(attributes = []) {
+  const map = {};
+
+  attributes.forEach((attr) => {
+    if (!map[attr.attributeKey]) map[attr.attributeKey] = [];
+    if (Array.isArray(attr.values)) map[attr.attributeKey].push(...attr.values);
+  });
+
+  return Object.entries(map).map(([key, values]) => ({
+    attributeKey: key,
+    values: [...new Set(values)],
+  }));
+}
+
 const ActivatedCharcoal = () => {
-  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-  const DOMAIN_NAME = import.meta.env.VITE_DOMAIN_NAME;
-
-  const { categorySlug } = useParams();
-
+  const navigate = useNavigate();
   const [product, setProduct] = useState(null);
-  const [productImages, setProductImages] = useState([]);
+  const [images, setImages] = useState([]);
+  const [activeIndex, setActiveIndex] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [categoryName, setCategoryName] = useState("");
-  const [error, setError] = useState("");
+
+  const categoryName = "Activated Charcoal";
 
   useEffect(() => {
-    fetchProductByCategory();
-  }, [categorySlug]);
+    fetchProduct();
+  }, []);
 
-  /* ===============================
-     FETCH PRODUCT USING CATEGORY
-  =============================== */
-
-  const fetchProductByCategory = async () => {
+  const fetchProduct = async () => {
     try {
-      const catRes = await axios.get(
-        `${API_BASE_URL}/api/categories`,
-        { params: { domainName: DOMAIN_NAME } }
-      );
+      setLoading(true);
 
-      const categories =
-        catRes.data?.data ||
-        catRes.data?.categories ||
-        catRes.data ||
-        [];
-
-      console.log("All Categories:", categories);
-      console.log("Looking for slug:", categorySlug);
-
-      const matchedCategory = categories.find((cat) => {
-        const slug = cat.name.toLowerCase().replace(/\s+/g, "-");
-        console.log(`Category: ${cat.name} -> Slug: ${slug}`);
-        return slug === categorySlug;
+      const catRes = await axios.get(`${API_BASE}/api/categories`, {
+        params: { domainName: DOMAIN_NAME },
       });
 
+      const categories = catRes.data?.data || [];
+
+      // Normalize spaces: replace multiple spaces with single space
+      const matchedCategory = categories.find(
+        (c) => 
+          c.name.toLowerCase().replace(/\s+/g, ' ').trim() === 
+          categoryName.toLowerCase().replace(/\s+/g, ' ').trim()
+      );
+
       if (!matchedCategory) {
-        console.error("No category matched for slug:", categorySlug);
-        const fallbackName = categorySlug.replace(/-/g, " ");
-        setCategoryName(fallbackName);
-        setError(`Category "${fallbackName}" not found in backend. Available categories: ${categories.map(c => c.name).join(", ")}`);
-        console.log("Available categories:", categories.map(c => ({ name: c.name, slug: c.name.toLowerCase().replace(/\s+/g, "-") })));
+        console.log("Looking for:", categoryName);
+        console.log("Available categories:", categories.map(c => ({ 
+          name: c.name, 
+          normalized: c.name.toLowerCase().replace(/\s+/g, ' ').trim() 
+        })));
+        console.error("Category not found:", categoryName);
         setLoading(false);
         return;
       }
 
-      /* HERO TITLE SET */
-      setCategoryName(matchedCategory.name);
       console.log("Matched Category:", matchedCategory);
 
-      // First try: Fetch products by categoryId
+      // Try fetching by categoryId first
       let products = [];
-      
       try {
-        const productRes = await axios.get(
-          `${API_BASE_URL}/api/products`,
-          {
-            params: {
-              domainName: DOMAIN_NAME,
-              categoryId: matchedCategory._id
-            }
-          }
-        );
-        products = productRes.data?.data || [];
-      } catch (productError) {
-        console.warn("Failed to fetch products by categoryId, trying fallback...");
-      }
-
-      // Fallback: If no products found by categoryId, fetch all and filter by name
-      if (products.length === 0) {
-        console.log("No products found by categoryId, trying name-based search...");
-        const allProductsRes = await axios.get(
-          `${API_BASE_URL}/api/products`,
-          { params: { domainName: DOMAIN_NAME } }
-        );
-        const allProducts = allProductsRes.data?.data || [];
-        
-        // Find products that match the category name
-        products = allProducts.filter((p) => {
-          const productName = p.name?.toLowerCase() || "";
-          const categoryName = matchedCategory.name.toLowerCase();
-          return productName.includes(categoryName) || categoryName.includes(productName);
+        const prodRes = await axios.get(`${API_BASE}/api/products`, {
+          params: {
+            domainName: DOMAIN_NAME,
+            categoryId: matchedCategory._id,
+          },
         });
+        products = prodRes.data?.data || [];
+        console.log("Products by categoryId:", products);
+      } catch (prodErr) {
+        console.warn("Failed to fetch by categoryId, trying fallback...");
       }
 
-      console.log("Products for category:", products);
-
+      // Fallback: fetch all products and filter by name
       if (products.length === 0) {
-        console.warn("No products found for category:", matchedCategory.name);
-        setError(`No products found for "${matchedCategory.name}". Check backend product-category linkage.`);
+        const allProdRes = await axios.get(`${API_BASE}/api/products`, {
+          params: { domainName: DOMAIN_NAME },
+        });
+        const allProducts = allProdRes.data?.data || [];
+        console.log("All Products:", allProducts);
+
+        products = allProducts.filter((p) => {
+          const productName = p.name?.toLowerCase().trim() || "";
+          return productName.includes("activated") && productName.includes("charcoal");
+        });
+        console.log("Filtered products by name:", products);
+      }
+
+      if (!products.length) {
+        console.warn("No products found for category:", categoryName);
         setLoading(false);
         return;
       }
 
       const selectedProduct = products[0];
-
       setProduct(selectedProduct);
 
-      fetchProductImages(selectedProduct._id);
-
-    } catch (error) {
-      console.error("Product fetch error:", error);
+      fetchImages(selectedProduct._id);
+    } catch (err) {
+      console.error("Fetch error:", err);
       setLoading(false);
     }
   };
 
-  /* ===============================
-     FETCH PRODUCT IMAGES
-  =============================== */
-
-  const fetchProductImages = async (productId) => {
+  const fetchImages = async (productId) => {
     try {
-      const res = await axios.get(
-        `${API_BASE_URL}/api/product-images`,
-        { params: { productId } }
-      );
+      const res = await axios.get(`${API_BASE}/api/product-images`, {
+        params: { productId },
+      });
 
-      if (res.data.success) {
-        setProductImages(res.data.data || []);
-      }
-
-    } catch (error) {
-      console.error("Image fetch error:", error);
+      setImages(res.data?.data || []);
+      setActiveIndex(0);
+    } catch {
+      setImages([]);
     } finally {
       setLoading(false);
     }
   };
 
-  /* ===============================
-     IMAGE URL
-  =============================== */
+  if (loading) return <div className="activated-center">Loading...</div>;
 
-  const getImageUrl = () => {
-    if (!productImages.length) return "/default-product.jpg";
+  if (!product)
+    return <div className="activated-center">Product Not Found</div>;
 
-    const img = productImages[0]?.image;
+  const normalizedAttributes = normalizeAttributes(product.attributes);
 
-    if (!img) return "/default-product.jpg";
+  const getAttr = (key) =>
+    normalizedAttributes.find((a) => a.attributeKey === key)?.values || [];
 
-    if (img.startsWith("data:image")) return img;
+  const productName =
+    getAttr("product_name")[0] ||
+    getAttr("title")[0] ||
+    product.name ||
+    "Product";
 
-    if (img.startsWith("http")) return img;
-
-    return `${API_BASE_URL}/${img.replace(/^\/+/, "")}`;
-  };
-
-  if (loading) {
-    return <div className="product-loading">Loading Product...</div>;
-  }
-
-  if (error) {
-    return (
-      <div className="product-loading">
-        <h2>⚠️ {error}</h2>
-        <p style={{ marginTop: '20px', fontSize: '14px', color: '#666' }}>
-          Check browser console (F12) for detailed logs
-        </p>
-      </div>
-    );
-  }
-
-  if (!product) {
-    return <div className="product-loading">Product Not Found</div>;
-  }
+  const description = getAttr("description")[0];
 
   return (
-    <div className="product-page">
-      {/* HERO SECTION */}
-      <div className="hero-section">
-        <h1 className="hero-title">
-          {categoryName}
-        </h1>
+    <div className="activated-page-wrapper">
+      {/* HERO SECTION WITH FIXED BACKGROUND */}
+      <div className="activated-hero-section zoom-animate">
+        <div className="activated-hero-overlay">
+          <div className="activated-hero-content activated-zoom-animate">
+            <h1>{productName}</h1>
+            <p>Premium Quality Activated Charcoal</p>
+          </div>
+        </div>
       </div>
 
-      {/* PRODUCT CARD */}
-      <div className="product-container">
-        <div className="product-image-section">
-          <img
-            src={getImageUrl()}
-            alt={product.name}
-            onError={(e) => (e.target.src = "/default-product.jpg")}
-          />
+      {/* PRODUCT CONTENT */}
+      <div className="activated-container">
+        <div className="activated-card">
+        {/* LEFT CONTENT */}
+
+        <div className="activated-left">
+          {/* <div className="activated-breadcrumb">
+            <span>Home</span>
+            <span>/</span>
+            <span>Products</span>
+            <span>/</span>
+            <span>{productName}</span>
+          </div> */}
+
+          <h2 className="activated-title mx-4">{productName}</h2>
+
+          {description && (
+            <p className="activated-desc">{description}</p>
+          )}
+
+          <table className="activated-table">
+            <tbody>
+              {normalizedAttributes
+                .filter(
+                  (a) =>
+                    !["product_name", "title", "description"].includes(
+                      a.attributeKey
+                    )
+                )
+                .map((attr) => (
+                  <tr key={attr.attributeKey}>
+                    <td className="activated-key">
+                      {formatKey(attr.attributeKey)}
+                    </td>
+
+                    <td className="activated-value">
+                      {attr.values.join(", ")}
+                    </td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
+
+          <button className="activated-btn" onClick={() => navigate("/contact")}>
+            Enquiry
+          </button>
         </div>
 
-        <div className="product-details-section">
-          <div className="attributes-grid">
-            {product.attributes?.map((attr) => (
-              <div className="attribute-card" key={attr.attributeId}>
-                <h4>{attr.attributeKey}</h4>
-                <p>
-                  {renderAttributeValue(attr.values)}
-                  {attr.unit ? ` ${attr.unit}` : ""}
-                </p>
-              </div>
+        {/* RIGHT IMAGES */}
+
+        <div className="activated-right">
+          <div className="activated-main-img">
+            {images.length > 0 ? (
+              <img
+                src={images[activeIndex]?.image}
+                alt={productName}
+              />
+            ) : (
+              <span>No Image</span>
+            )}
+          </div>
+
+          <div className="activated-thumbs">
+            {images.map((img, index) => (
+              <img
+                key={index}
+                src={img.image}
+                alt=""
+                onClick={() => setActiveIndex(index)}
+                className={
+                  activeIndex === index
+                    ? "activated-thumb-active"
+                    : ""
+                }
+              />
             ))}
           </div>
         </div>
       </div>
+      </div>
     </div>
   );
-};
-
-const renderAttributeValue = (value) => {
-  if (!value) return "-";
-  if (typeof value === "string" || typeof value === "number") return value;
-  if (Array.isArray(value)) return value.join(", ");
-  if (typeof value === "object") return JSON.stringify(value);
-  return "-";
 };
 
 export default ActivatedCharcoal;

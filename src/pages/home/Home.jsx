@@ -259,6 +259,7 @@
 
 import { useState, useEffect } from "react";
 import "./home.css";
+import Reviews from "../../components/Reviews";
 
 // import cocoShell from "../../assets/images/charcoal.png";
 
@@ -266,9 +267,40 @@ import cocoShell  from "../../assets/images/coco_wood2.png";
 import cocoWood from "../../assets/images/ban1.png";
 import dc1 from "../../assets/images/dc1.png";
 
+// Timeline images
+import coco1 from "../../assets/images/process1.png";
+import coco2 from "../../assets/images/process2.png";
+import coco3 from "../../assets/images/process3.png";
+import s1 from "../../assets/images/process4.png";
+
 const images = [cocoShell, cocoWood, dc1];
 
+const timelineSteps = [
+  {
+    title: "Raw Material Collection",
+    description: "Collection of coconut shells and agricultural residues.",
+    image: coco1
+  },
+  {
+    title: "Processing & Quality Control",
+    description: "Advanced compression and carbonization processes with strict quality checks.",
+    image: coco2
+  },
+  {
+    title: "Distribution",
+    description: "Reliable supply to industries, boilers, power plants and export markets.",
+    image: coco3
+  },
+  {
+    title: "Sustainable Energy",
+    description: "Delivering eco-friendly biomass solutions for a greener tomorrow.",
+    image: s1
+  }
+];
+
 export default function Home() {
+  const [current, setCurrent] = useState(0);
+  const [activeCard, setActiveCard] = useState(0); // Start with first card active
 
   useEffect(() => {
     const items = document.querySelectorAll(".timeline-item");
@@ -291,8 +323,7 @@ export default function Home() {
     };
   }, []);
 
-  const [current, setCurrent] = useState(0);
-
+  // Hero background rotation
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % images.length);
@@ -300,6 +331,22 @@ export default function Home() {
 
     return () => clearInterval(interval);
   }, []);
+
+  // Raw materials cards rotation - changes every 2 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveCard((prev) => (prev + 1) % 3);
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  // Helper function to get card position class
+  const getCardClass = (cardIndex) => {
+    if (cardIndex === activeCard) return 'card-center';
+    if (cardIndex === (activeCard + 1) % 3) return 'card-right';
+    return 'card-left';
+  };
 
   return (
     <>
@@ -322,7 +369,7 @@ export default function Home() {
         <h2 className="section-title">Raw Materials</h2>
 
         <div className="services-container">
-          <div className="service-card">
+          <div className={`service-card ${getCardClass(0)}`}>
             <h3>Dry Coconut Shell</h3>
             <p>
               High-quality coconut shells collected from trusted sources.
@@ -330,7 +377,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="service-card">
+          <div className={`service-card ${getCardClass(1)}`}>
             <h3>Coconut Charcoal</h3>
             <p>
               Premium grade charcoal with high calorific value and low ash content,
@@ -338,7 +385,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="service-card">
+          <div className={`service-card ${getCardClass(2)}`}>
             <h3>Activated Charcoal</h3>
             <p>
               Processed coconut-based activated carbon used in water purification,
@@ -447,32 +494,24 @@ export default function Home() {
 
   <div className="process-timeline">
 
-    <div className="process-step">
-      <div className="step-indicator"></div>
-      <div className="step-content">
-        <h3>Raw Material Collection</h3>
-        <p>Collection of coconut shells and agricultural residues.</p>
+    {timelineSteps.map((step, index) => (
+      <div className="process-step" key={index}>
+        <div className="step-indicator"></div>
+        <div className="step-content-wrapper">
+          <h3>{step.title}</h3>
+          <div className="step-image-wrapper">
+            <img src={step.image} alt={step.title} className="step-image" />
+          </div>
+          <p className="step-description">{step.description}</p>
+        </div>
       </div>
-    </div>
-
-    <div className="process-step">
-      <div className="step-indicator"></div>
-      <div className="step-content">
-        <h3>Processing & Quality Control</h3>
-        <p>Advanced compression and carbonization processes with strict quality checks.</p>
-      </div>
-    </div>
-
-    <div className="process-step">
-      <div className="step-indicator"></div>
-      <div className="step-content">
-        <h3>Distribution</h3>
-        <p>Reliable supply to industries, boilers, power plants and export markets.</p>
-      </div>
-    </div>
+    ))}
 
   </div>
 </section>
+
+      {/* ================= REVIEWS SECTION ================= */}
+      <Reviews />
 
     </>
   );

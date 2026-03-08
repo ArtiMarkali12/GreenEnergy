@@ -323,7 +323,8 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 import "./navbar.css";
-import logo from "../../assets/images/l1.png";
+import logo from "../../assets/images/logo12.png";
+// import logo from "../../assets/images/l1.png";
 
 const Navbar = () => {
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
@@ -419,6 +420,7 @@ const Navbar = () => {
             </li>
 
             <li><Link to="/blogs">Blogs</Link></li>
+            <li><Link to="/certificates">Certificates</Link></li>
             <li><Link to="/contact">Contact</Link></li>
           </ul>
 
@@ -474,6 +476,7 @@ const Navbar = () => {
           </li>
 
           <li><Link to="/blogs">Blogs</Link></li>
+          <li><Link to="/certificates">Certificates</Link></li>
           <li><Link to="/contact">Contact</Link></li>
         </ul>
       </div>

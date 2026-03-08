@@ -3,7 +3,7 @@
 /* ============================= */
 
 .footer {
-  background: #223524;   /* Pure dark */
+  background: linear-gradient(135deg, #0d4719, #1b5e20);
   color: #ffffff;
   padding-top: 60px;
   /* margin-top: 80px; */

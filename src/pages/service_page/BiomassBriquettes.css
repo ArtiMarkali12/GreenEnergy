@@ -1,309 +1,468 @@
-/* ===============================
-   Biomass Briquettes Page CSS
-   Green Eco-Friendly Theme - UNIQUE CLASSES
-=============================== */
-
-/* PAGE BACKGROUND */
-.biomass-briquettes-page {
-  min-height: 100vh;
-  padding: 70px 20px 80px;
-  background: linear-gradient(180deg, #f1f8e9 0%, #e8f5e9 100%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 0px;
+:root {
+  --primary: #1e3a8a;
+  --accent: #f59e0b;
 }
 
-/* HERO SECTION */
-.biomass-briquettes-hero {
-  text-align: center;
-  margin-bottom: 30px;
-  position: relative;
-}
+/* ================= WRAPPER ================= */
 
-.biomass-briquettes-title {
-  font-size: 56px;
-  font-weight: 900;
-  background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 50%, #4caf50 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  letter-spacing: 4px;
-  margin: 0;
-  text-transform: uppercase;
-}
-
-.biomass-briquettes-hero::after {
-  content: '';
-  display: block;
-  width: 120px;
-  height: 5px;
-  background: linear-gradient(90deg, #1b5e20, #4caf50);
-  margin: 25px auto 0;
-  border-radius: 3px;
-}
-
-/* PRODUCT CARD - Vertical Layout */
-.biomass-briquettes-container {
-  display: grid;
-  grid-template-columns: 1fr;
-  max-width: 1100px;
+.briquettes-page-wrapper {
   width: 100%;
-  background: #ffffff;
-  border-radius: 35px;
-  overflow: hidden;
-  box-shadow: 0 30px 90px rgba(27, 94, 32, 0.15);
-  border: 2px solid #c8e6c9;
-  animation: premiumFadeIn 1s ease;
-  position: relative;
+  overflow-x: hidden;
 }
 
-.biomass-briquettes-container::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 6px;
-  background: linear-gradient(90deg, #1b5e20, #4caf50, #66bb6a, #4caf50, #1b5e20);
-  background-size: 200% 100%;
-  animation: gradientFlow 3s ease infinite;
-}
+/* ================= HERO SECTION ================= */
 
-@keyframes gradientFlow {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
+.briquettes-hero-section {
+  height: 50vh;
+  min-height: 350px;
+  width: 100%;
 
-/* IMAGE SECTION - Top */
-.biomass-briquettes-image-section {
-  background: linear-gradient(180deg, #f1f8e9 0%, #dcedc8 100%);
+  /* FIXED BACKGROUND IMAGE */
+  background-image: url('../../assets/images/bio1.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 70px 50px;
   position: relative;
   overflow: hidden;
 }
 
-.biomass-briquettes-image-section::before {
-  content: '';
-  position: absolute;
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(76, 175, 80, 0.1) 0%, transparent 70%);
-  border-radius: 50%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+/* ZOOM ANIMATION */
+
+.briquettes-hero-section.zoom-animate {
+  animation: briquettesHeroZoomBg 20s ease-out infinite;
 }
 
-.biomass-briquettes-image-section img {
+@keyframes briquettesHeroZoomBg {
+  0% {
+    background-size: 100%;
+  }
+  100% {
+    background-size: 115%;
+  }
+}
+
+/* ================= OVERLAY ================= */
+
+.briquettes-hero-overlay {
   width: 100%;
-  max-width: 550px;
-  height: auto;
-  object-fit: contain;
-  border-radius: 25px;
-  z-index: 1;
-  box-shadow: 0 15px 50px rgba(27, 94, 32, 0.2);
-  border: 3px solid #ffffff;
-}
-
-/* BADGE */
-.biomass-briquettes-badge {
-  position: absolute;
-  top: 30px;
-  right: 30px;
-  background: linear-gradient(135deg, #1b5e20, #4caf50);
-  color: #ffffff;
-  padding: 12px 25px;
-  border-radius: 30px;
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  box-shadow: 0 8px 25px rgba(27, 94, 32, 0.3);
-  z-index: 2;
-}
-
-/* DETAILS SECTION - Bottom */
-.biomass-briquettes-details {
-  padding: 50px 60px;
-  background: #ffffff;
-}
-
-.biomass-briquettes-details h2 {
-  font-size: 32px;
-  font-weight: 800;
-  color: #1b5e20;
-  margin: 0 0 35px 0;
-  padding-bottom: 20px;
-  border-bottom: 3px dashed #c8e6c9;
-  text-align: center;
-  letter-spacing: 2px;
-}
-
-/* ATTRIBUTES GRID */
-.biomass-briquettes-attributes {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 25px;
-}
-
-/* ATTRIBUTE CARD */
-.biomass-briquettes-attribute-card {
-  background: linear-gradient(145deg, #f1f8e9 0%, #e8f5e9 100%);
-  padding: 30px 25px;
-  border-radius: 20px;
-  border: 2px solid #c8e6c9;
-  transition: all 0.3s ease;
-  box-shadow: 0 6px 20px rgba(27, 94, 32, 0.1);
-  position: relative;
-  overflow: hidden;
-}
-
-.biomass-briquettes-attribute-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 5px;
   height: 100%;
-  background: linear-gradient(180deg, #1b5e20, #4caf50);
-}
 
-.biomass-briquettes-attribute-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 40px rgba(27, 94, 32, 0.2);
-  border-color: #81c784;
-}
+  background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.85));
 
-.biomass-briquettes-attribute-card h4 {
-  font-size: 13px;
-  font-weight: 800;
-  color: #2e7d32;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin: 0 0 12px 0;
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
 }
 
-.biomass-briquettes-attribute-card h4::before {
-  content: '🌿';
-  font-size: 18px;
-}
+/* ================= CONTENT ================= */
 
-.biomass-briquettes-attribute-card p {
-  font-size: 19px;
-  font-weight: 700;
-  color: #2d3748;
-  margin: 0;
-  line-height: 1.4;
-}
-
-/* LOADING */
-.biomass-briquettes-loading {
-  font-size: 26px;
+.briquettes-hero-content {
   text-align: center;
-  padding: 100px;
-  color: #1b5e20;
-  font-weight: 700;
-  background: linear-gradient(135deg, #f1f8e9, #e8f5e9);
-  border-radius: 30px;
-  box-shadow: 0 15px 50px rgba(27, 94, 32, 0.15);
+  color: #fff;
+  max-width: 750px;
+  padding: 20px;
+  animation: briquettesFadeUp 1s ease;
 }
 
-/* ANIMATIONS */
-@keyframes premiumFadeIn {
+/* ================= TITLE ================= */
+
+.briquettes-hero-content h1 {
+  font-size: 56px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: white;
+}
+
+/* highlight */
+
+.briquettes-hero-content h1 span {
+  color: var(--accent);
+  text-shadow: 0 0 10px rgba(245, 158, 11, 0.6);
+}
+
+/* ================= SUBTITLE ================= */
+
+.briquettes-hero-content p {
+  margin-top: 14px;
+  font-size: 18px;
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+/* ================= ZOOM ANIMATION ================= */
+
+.briquettes-zoom-animate {
+  animation: briquettesHeroZoom 14s ease-in-out infinite alternate;
+}
+
+@keyframes briquettesHeroZoom {
+  0% {
+    background-size: 100%;
+  }
+
+  100% {
+    background-size: 115%;
+  }
+}
+
+/* ================= TEXT ANIMATION ================= */
+
+@keyframes briquettesFadeUp {
   from {
     opacity: 0;
-    transform: translateY(40px) scale(0.95);
+    transform: translateY(40px);
   }
+
   to {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
   }
 }
 
-/* MOBILE RESPONSIVE */
-@media (max-width: 1024px) {
-  .biomass-briquettes-image-section {
-    padding: 60px 40px;
-  }
+/* ================= RESPONSIVE ================= */
 
-  .biomass-briquettes-image-section img {
-    max-width: 450px;
-  }
+/* Laptop */
 
-  .biomass-briquettes-details {
-    padding: 50px 40px;
-  }
-
-  .biomass-briquettes-attributes {
-    grid-template-columns: repeat(2, 1fr);
+@media (max-width: 1200px) {
+  .briquettes-hero-content h1 {
+    font-size: 48px;
   }
 }
+
+/* Tablet */
+
+@media (max-width: 992px) {
+  .briquettes-hero-section {
+    height: 45vh;
+  }
+
+  .briquettes-hero-content h1 {
+    font-size: 40px;
+  }
+
+  .briquettes-hero-content p {
+    font-size: 17px;
+  }
+}
+
+/* Mobile */
 
 @media (max-width: 768px) {
-  .biomass-briquettes-title {
-    font-size: 42px;
-    letter-spacing: 2px;
+  .briquettes-hero-section {
+    height: 40vh;
+    min-height: 280px;
+    background-attachment: fixed;
   }
 
-  .biomass-briquettes-page {
-    padding: 100px 15px 60px;
-  }
-
-  .biomass-briquettes-attributes {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .biomass-briquettes-details {
-    padding: 40px 30px;
-  }
-
-  .biomass-briquettes-image-section {
-    padding: 50px 30px;
-  }
-
-  .biomass-briquettes-badge {
-    top: 20px;
-    right: 20px;
-    padding: 10px 20px;
-    font-size: 12px;
-  }
-}
-
-@media (max-width: 500px) {
-  .biomass-briquettes-title {
+  .briquettes-hero-content h1 {
     font-size: 32px;
   }
 
-  .biomass-briquettes-hero::after {
-    width: 80px;
-  }
-
-  .biomass-briquettes-attribute-card {
-    padding: 25px 20px;
-  }
-
-  .biomass-briquettes-attribute-card h4 {
-    font-size: 11px;
-    letter-spacing: 1px;
-  }
-
-  .biomass-briquettes-attribute-card p {
+  .briquettes-hero-content p {
     font-size: 16px;
   }
 
-  .biomass-briquettes-details h2 {
-    font-size: 24px;
+  .briquettes-zoom-animate {
+    animation: none;
+  }
+}
+
+/* Small Mobile */
+
+@media (max-width: 480px) {
+  .briquettes-hero-section {
+    height: 35vh;
+    min-height: 250px;
+    background-attachment: fixed;
   }
 
-  .biomass-briquettes-image-section img {
-    border-radius: 15px;
+  .briquettes-hero-content h1 {
+    font-size: 26px;
+  }
+
+  .briquettes-hero-content p {
+    font-size: 15px;
+  }
+}
+
+/* ================= GLOBAL ================= */
+
+.briquettes-container {
+  max-width: 1300px;
+  margin: auto;
+  padding: 30px 20px;
+  font-family: "Poppins", sans-serif;
+}
+
+/* ================= BREADCRUMB ================= */
+
+.briquettes-breadcrumb {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 40px;
+}
+
+.briquettes-breadcrumb span {
+  margin: 0 6px;
+  color: #aaa;
+}
+
+.briquettes-breadcrumb a {
+  text-decoration: none;
+  color: #0d6efd;
+  font-weight: 500;
+}
+
+.briquettes-breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+/* ================= CARD ================= */
+
+.briquettes-card {
+  display: flex;
+  gap: 70px;
+  align-items: flex-start;
+  padding: 60px 0;
+  border-bottom: 1px solid #ececec;
+  animation: briquettesFade 0.6s ease;
+}
+
+@keyframes briquettesFade {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================= LEFT SIDE ================= */
+
+.briquettes-left {
+  flex: 1;
+  margin-left: 40px;
+}
+
+/* TITLE */
+
+.briquettes-title {
+  font-size: 34px;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 18px;
+  letter-spacing: 0.4px;
+}
+
+/* DESCRIPTION */
+
+.briquettes-desc {
+  font-size: 15px;
+  color: #666;
+  line-height: 1.8;
+  margin-bottom: 35px;
+}
+
+/* ================= TABLE ================= */
+
+.briquettes-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 35px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fafafa;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+}
+
+.briquettes-table tr {
+  transition: 0.3s;
+}
+
+.briquettes-table tr:hover {
+  background: #f1f5ff;
+}
+
+.briquettes-table tr:nth-child(even) {
+  background: #f7f7f7;
+}
+
+.briquettes-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+
+.briquettes-key {
+  font-weight: 600;
+  color: #333;
+  width: 230px;
+}
+
+.briquettes-value {
+  color: #555;
+}
+
+/* ================= BUTTON ================= */
+
+.briquettes-btn {
+  padding: 13px 44px;
+  width: auto;
+  display: inline-block;
+
+  background: linear-gradient(135deg, #166e23, #067a13);
+  color: white;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+.briquettes-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+}
+
+/* ================= RIGHT SIDE ================= */
+
+.briquettes-right {
+  width: 420px;
+  position: sticky;
+  top: 120px;
+}
+
+/* ================= MAIN IMAGE ================= */
+
+.briquettes-main-img {
+  width: 100%;
+  height: 300px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid #eee;
+  margin-bottom: 15px;
+  background: #fff;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* IMAGE ZOOM */
+
+.briquettes-main-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.briquettes-main-img:hover img {
+  transform: scale(1.2);
+}
+
+/* ================= THUMBNAILS ================= */
+
+.briquettes-thumbs {
+  display: flex;
+  gap: 12px;
+}
+
+.briquettes-thumbs img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.briquettes-thumbs img:hover {
+  transform: scale(1.08);
+  border-color: #0d6efd;
+}
+
+/* ACTIVE */
+
+.briquettes-thumb-active {
+  border-color: #0d6efd;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+/* ================= LOADING TEXT ================= */
+
+.briquettes-center {
+  text-align: center;
+  font-size: 18px;
+  padding: 80px 0;
+  color: #777;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 1100px) {
+  .briquettes-card {
+    gap: 40px;
+  }
+
+  .briquettes-right {
+    width: 350px;
+  }
+}
+
+@media (max-width: 900px) {
+
+  .briquettes-card {
+    flex-direction: column;
+  }
+
+  .briquettes-right{
+    order: 1;
+  }
+
+  .briquettes-left{
+    order: 2;
+  }
+
+}
+
+@media (max-width: 900px) {
+  .briquettes-card {
+    flex-direction: column;
+  }
+
+  .briquettes-right {
+    width: 100%;
+    position: relative;
+    top: 0;
+  }
+
+  .briquettes-main-img {
+    height: 350px;
+  }
+}
+
+@media (max-width: 600px) {
+  .briquettes-title {
+    font-size: 26px;
+  }
+
+  .briquettes-main-img {
+    height: 280px;
+  }
+
+  .briquettes-thumbs img {
+    width: 70px;
+    height: 70px;
   }
 }

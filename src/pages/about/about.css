@@ -8,7 +8,7 @@
 /* HERO SECTION */
 .about-hero {
   position: relative;
-  height: 100vh;
+  height: 70vh;
   background-size: cover;
   background-position: center bottom;
   background-repeat: no-repeat;
@@ -48,6 +48,39 @@
 .hero-content p {
   font-size: 1.1rem;
   opacity: 0.9;
+}
+
+/* ABOUT CONTENT SECTION */
+.about-content-section {
+  padding: 80px 10%;
+  padding-bottom: 0;
+  /* background: linear-gradient(135deg, #f1f8e9, #e8f5e9); */
+  background: #e2fbe2; 
+}
+
+.about-content-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.about-content-container h2 {
+  font-size: 36px;
+  color: #1B5E20;
+  margin-bottom: 30px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.about-content-container p {
+  font-size: 16px;
+  color: #333;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+.about-content-container p:last-child {
+  margin-bottom: 0;
 }
 
 /* MISSION SECTION */
@@ -257,5 +290,21 @@
 
   .overlay-card {
     width: 100%;
+  }
+
+  /* About Content Section - Mobile */
+  .about-content-section {
+    padding: 50px 5%;
+  }
+
+  .about-content-container h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+
+  .about-content-container p {
+    font-size: 14px;
+    line-height: 1.7;
+    text-align: left;
   }
 }

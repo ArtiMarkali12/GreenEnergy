@@ -1,99 +1,33 @@
-/* .hero-container {
-  position: relative;
-  height: 100vh;
-  width: 100%;
-  overflow: hidden;
-  margin-top: 1px;
-  
-  
-} */
-/* 
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  transition: background-image 1s ease-in-out;
-  height: 400px;
-} */
-/* 
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.6);
-   height: 400px;
-} */
-
-/* .hero-content {
-  position: relative;
-  z-index: 2;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  text-align: center;
-}
-
-.hero-content h1 {
-  font-size: 3rem;
-  margin-bottom: 20px;
-}
-
-.hero-content p {
-  font-size: 1.2rem;
-  margin-bottom: 30px;
-  max-width: 700px;
-}
-
-.hero-btn {
-  padding: 12px 35px;
-  background: #16a34a;
-  border: none;
-  border-radius: 50px;
-  color: white;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.hero-btn:hover {
-  background: #15803d;
-} */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* ================= HERO SECTION ================= */
 
 .hero-container {
   height: 73vh;
   width: 100%;
-  background-size: cover;
+  background-size: 100%;
   background-position: center;
-  background-attachment: fixed;   /* ⭐ IMPORTANT LINE */
+  background-attachment: fixed;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-   margin-top: 1px;
-  
+  margin-top: 0;
+  overflow: hidden;
+  animation: heroZoomHome 15s ease-in-out infinite alternate;
+}
+
+/* ZOOM ANIMATION */
+@keyframes heroZoomHome {
+  0% {
+    background-size: 100%;
+  }
+  100% {
+    background-size: 115%;
+  }
 }
 
 /* Overlay */
 .hero-overlay {
-    height: 400px;
+  height: 400px;
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.3);
@@ -133,213 +67,84 @@
   background: #15803d;
 }
 
-/* ================= SERVICES SECTION ================= */
+/* ================= RAW MATERIALS / SERVICES SECTION ================= */
 
 .services-section {
-  padding: 80px 10%;
+  padding: 60px 10%;
   background-color: #F1F8E9;
   text-align: center;
+  overflow: hidden;
 }
 
 .section-title {
   font-size: 36px;
-  margin-bottom: 50px;
+  margin-bottom: 10px;
   color: black !important;
   font-weight: 700;
-  /* margin-top: 70px; */
+  position: relative;
+  display: inline-block;
 }
 
+.section-title::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* Carousel Container */
 .services-container {
   display: flex;
-  gap: 30px;
   justify-content: center;
-  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+  height: 400px;
+  /* margin-top: 20px; */
 }
 
+/* Common Card Styles */
 .service-card {
   background: white;
   padding: 30px;
-  width: 300px;
+  width: 280px;
   border-radius: 15px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-  transition: 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  position: absolute;
+  left: 50%;
 }
 
 .service-card h3 {
   margin-bottom: 15px;
   color: #1B5E20;
+  font-size: 22px;
+  font-weight: 600;
 }
 
 .service-card p {
   color: #555;
   font-size: 15px;
+  line-height: 1.6;
 }
 
-.service-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-}
-
-
-
-
-
-
-.services-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;   /* 🔥 Important */
-  gap: 30px;
-}
-
-/* Common Card */
-.service-card {
-  background: white;
-  padding: 30px;
-  width: 270px;
-  border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-  transition: 0.4s ease;
-}
-
-/* Side Cards */
-.service-card:first-child,
-.service-card:last-child {
-  transform: scale(0.9);
+/* Card Position Classes */
+.service-card.card-left {
+  transform: translateX(-50%) translateX(-300px) scale(0.85);
+  opacity: 0.6;
   z-index: 1;
-  margin-bottom: 50px;
 }
 
-/* 🔥 Middle Card */
-.service-card:nth-child(2) {
-  transform: scale(1.15);
-  margin-top: -40px;   /* var uthellela */
-  z-index: 5;
-  box-shadow: 0 35px 50px rgba(0, 0, 0, 0.25);
+.service-card.card-center {
+  transform: translateX(-50%) scale(1.15);
+  opacity: 1;
+  z-index: 10;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
 }
 
-/* Hover */
-.service-card:hover {
-  transform: scale(1.05) translateY(-8px);
+.service-card.card-right {
+  transform: translateX(-50%) translateX(300px) scale(0.85);
+  opacity: 0.6;
+  z-index: 1;
 }
-
-/* Keep middle strong on hover */
-.service-card:nth-child(2):hover {
-  transform: scale(1.18);
-}
-
-
-
-
-/*=============== Mobile Responsive Service============= */
-
-@media (max-width: 768px) {
-  .services-container {
-    flex-direction: column;
-    gap: 20px;
-    margin-bottom: 40px;
-  }
-
-  .service-card,
-  .service-card:nth-child(2) {
-    transform: scale(1);
-    margin-top: 0;
-    width: 100%;
-  }
-}
-
-
-
-
-
-
-
-
-
-
-/* ================= MOBILE RESPONSIVE FIX ================= */
-@media (max-width: 768px) {
-
-  /* Section padding reduce */
-  .services-section {
-    padding: 40px 5%;
-  }
-
-  /* Title responsive */
-  .section-title {
-    font-size: 24px;
-    margin-bottom: 30px;
-    margin-top: 30px;
-    font-weight: 700;
-    color: black;
-  }
-
-  /* Container column layout */
-  .services-container {
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-  }
-
-  /* Remove ALL scaling effects on mobile */
-  .service-card,
-  .service-card:first-child,
-  .service-card:last-child,
-  .service-card:nth-child(2) {
-    transform: none !important;
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-    width: 100%;
-    max-width: 350px;
-  }
-
-  .service-card {
-    padding: 20px;
-  }
-
-  .service-card h3 {
-    font-size: 18px;
-  }
-
-  .service-card p {
-    font-size: 14px;
-  }
-
-}
-
-
-
-
-/* ================= MOBILE RESPONSIVE ================= */
-
-@media (max-width: 768px) {
-
-  .hero-container {
-    height: 54vh;                 /* full screen nko */
-   
-    background-position: center;
-    
-  background-attachment: fixed;   /* ⭐ IMPORTANT LINE */
-  }
-
-  .hero-content h1 {
-    font-size: 1.8rem;
-  }
-
-  .hero-content p {
-    font-size: 0.95rem;
-  }
-
-  .hero-btn {
-    padding: 10px 25px;
-    font-size: 14px;
-  }
-}
-
-
-
-
-
 
 /* ================= TIMELINE SECTION ================= */
 
@@ -371,6 +176,14 @@
   position: relative;
   width: 50%;
   padding: 20px 40px;
+  opacity: 0;
+  transform: translateY(-60px);
+  transition: all 0.8s ease;
+}
+
+.timeline-item.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .timeline-item:nth-child(odd) {
@@ -411,82 +224,16 @@
   font-size: 15px;
 }
 
-/* Default hidden */
-.timeline-item {
-  opacity: 0;
-  transition: opacity 0.8s ease;
-}
-
-/* Scroll var visible */
-.timeline-item.show {
-  opacity: 1;
-}
-
-@media (max-width: 768px) {
-  .timeline::before {
-    left: 10px;
-  }
-
-  .timeline-item {
-    width: 100%;
-    padding-left: 40px;
-    text-align: left !important;
-  }
-
-  .timeline-item:nth-child(even) {
-    left: 0;
-  }
-
-  .timeline-dot {
-    left: 10px !important;
-  }
-}
-
-
-
-/* ================= SCROLL ANIMATION ================= */
-
-.timeline-item {
-  opacity: 0;
-  transform: translateY(-60px);   /* Top kadun start */
-  transition: all 0.8s ease;
-}
-
-/* Active class jeva scroll var yeil */
-.timeline-item.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ==================== BIOMASS PELLETS========================= */
+/* ================= BIOMASS PELLETS ================= */
 
 .product-hero {
   position: relative;
   width: 100%;
-  height: 70vh;   /* height kami keli */
-
+  height: 70vh;
   background-image: url("../../assets/images/coco3.png");
-  background-position: bottom center;   /* 🔥 bottom show hoil */
+  background-position: bottom center;
   background-repeat: no-repeat;
   background-size: cover;
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -551,54 +298,13 @@
   transform: translateY(-10px);
 }
 
-@media (max-width: 768px) {
-
-  .product-hero {
-    height: 60vh;   /* thoda adjust */
-    
-    
-  }
-
-  .spec-cards {
-    bottom: -60px;   /* thoda upar anun ghe */
-    gap: 10px;
-    padding: 0 10px;
-  }
-
-  .spec-card {
-    padding: 15px 18px;
-    border-radius: 10px;
-  }
-
-  .spec-card h3 {
-    font-size: 18px;
-  }
-
-  .spec-card span {
-    font-size: 12px;
-  }
-
-}
-
-@media (max-width: 768px) {
-
-  /* Raw Material section padding kami kara */
-  .services-section {
-    padding: 10px 5% !important;
-    
-  }
-
-}
-
-
-/* ========================================================== */
 /* ================= BIOMASS BRIQUETTES SECTION ================= */
 
 .briquettes-section {
   padding: 70px 8%;
   background: linear-gradient(135deg, #f1f8e9, #e8f5e9);
   text-align: center;
-  margin-top: 30px;
+  margin-top: 80px;
 }
 
 .briquettes-title {
@@ -619,7 +325,7 @@
 /* Table Styling */
 .briquettes-table {
   width: 100%;
-  max-width: 900px;
+  max-width: 600px;
   border-collapse: collapse;
   background: #ffffff;
   border-radius: 15px;
@@ -632,13 +338,20 @@
 .briquettes-table thead {
   background: linear-gradient(90deg, #2e7d32, #1b5e20);
   color: white;
+
 }
 
 .briquettes-table th {
   padding: 18px;
   font-size: 16px;
-  text-align: left;
+  text-align: center;
   letter-spacing: 0.5px;
+}
+
+/* No hover effect on header row */
+.briquettes-table thead tr:hover {
+  background-color: transparent;
+  transform: none;
 }
 
 /* Body */
@@ -661,32 +374,6 @@
   transition: 0.3s ease;
 }
 
-/* ================= MOBILE RESPONSIVE ================= */
-
-@media (max-width: 768px) {
-
-  .briquettes-section {
-    padding: 40px 5%;
-     margin-top: 40px;
-  }
-
-  .briquettes-title {
-    font-size: 24px;
-    margin-bottom: 30px;
-   
-  }
-
-  .briquettes-table th,
-  .briquettes-table td {
-    padding: 10px;
-    font-size: 13px;
-  }
-
-}
-
-
-
-
 /* ================= PROCESS TIMELINE SECTION ================= */
 
 .process-timeline-section {
@@ -695,10 +382,11 @@
   text-align: center;
 }
 
-.timeline-title {
-  font-size: 36px;
+.process-timeline-section .timeline-title {
+  font-size: 42px !important;
   margin-bottom: 60px;
   color: #1B5E20;
+  font-weight: 700;
 }
 
 /* Timeline Wrapper */
@@ -756,31 +444,191 @@
   left: -12px;
 }
 
-/* Content Box */
-.step-content {
-  background: #ffffff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+/* Content Wrapper */
+.step-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  text-align: center;
 }
 
-.step-content h3 {
-  margin-bottom: 10px;
+.step-content-wrapper h3 {
   color: #1B5E20;
-  text-align: start;
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0;
 }
 
-.step-content p {
-  font-size: 14px;
+/* Image Wrapper */
+.step-image-wrapper {
+  width: 60vh;
+  max-width: 600px;
+  height: 270px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  transition: transform 0.4s ease;
+}
+
+.step-image-wrapper:hover {
+  transform: scale(1.02);
+}
+
+.step-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.step-image-wrapper:hover .step-image {
+  transform: scale(1.1);
+}
+
+/* Description */
+.step-description {
   color: #555;
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 0;
 }
 
 /* ================= MOBILE RESPONSIVE ================= */
 
 @media (max-width: 768px) {
 
-  .timeline-title {
+  /* Hero */
+  .hero-container {
+    height: 54vh;
+    background-size: cover;
+    background-position: center;
+    background-attachment: scroll;
+    animation: none;
+  }
+
+  .hero-content h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero-content p {
+    font-size: 0.95rem;
+  }
+
+  .hero-btn {
+    padding: 10px 25px;
+    font-size: 14px;
+  }
+
+  /* Services / Raw Materials */
+  .services-section {
+    padding: 40px 5%;
+  }
+
+  .section-title {
     font-size: 24px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    font-weight: 700;
+    color: black;
+  }
+
+  .services-container {
+    flex-direction: column;
+    gap: 20px;
+    height: auto;
+    position: relative;
+  }
+
+  .service-card,
+  .service-card.card-left,
+  .service-card.card-center,
+  .service-card.card-right {
+    position: relative !important;
+    left: auto !important;
+    transform: none !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    width: 100%;
+    max-width: 350px;
+    opacity: 1 !important;
+  }
+
+  .service-card {
+    padding: 20px;
+  }
+
+  .service-card h3 {
+    font-size: 18px;
+  }
+
+  .service-card p {
+    font-size: 14px;
+  }
+
+  /* Timeline */
+  .timeline::before {
+    left: 10px;
+  }
+
+  .timeline-item {
+    width: 100%;
+    padding-left: 40px;
+    text-align: left !important;
+  }
+
+  .timeline-item:nth-child(even) {
+    left: 0;
+  }
+
+  .timeline-dot {
+    left: 10px !important;
+  }
+
+  /* Product Hero */
+  .product-hero {
+    height: 60vh;
+  }
+
+  .spec-cards {
+    bottom: -60px;
+    gap: 10px;
+    padding: 0 10px;
+  }
+
+  .spec-card {
+    padding: 15px 18px;
+    border-radius: 10px;
+  }
+
+  .spec-card h3 {
+    font-size: 18px;
+  }
+
+  .spec-card span {
+    font-size: 12px;
+  }
+
+  /* Briquettes */
+  .briquettes-section {
+    padding: 40px 5%;
+    margin-top: 40px;
+  }
+
+  .briquettes-title {
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
+
+  .briquettes-table th,
+  .briquettes-table td {
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  /* Process Timeline */
+  .process-timeline-section .timeline-title {
+    font-size: 28px !important;
     margin-bottom: 40px;
   }
 
@@ -805,21 +653,18 @@
     left: 0;
     right: auto;
   }
-}
 
+  /* Timeline Images - Mobile */
+  .step-image-wrapper {
+    max-width: 100%;
+    height: 220px;
+  }
 
+  .step-content-wrapper h3 {
+    font-size: 22px;
+  }
 
-
-
-.section-title {
-  font-size: 36px;
-  margin-bottom: 50px;
-  color: black !important;
-  font-weight: 700;
-  position: relative;   /* ⭐ important */
-  display: inline-block; /* ⭐ important */
-}
-.section-title::after {
-  display: none !important;
-  content: none !important;
+  .step-description {
+    font-size: 14px;
+  }
 }

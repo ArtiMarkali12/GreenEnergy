@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import "./BiomassPellet.css";
+import "./Cocopeat.css";
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL;
 const DOMAIN_NAME = import.meta.env.VITE_DOMAIN_NAME;
@@ -24,14 +24,14 @@ function normalizeAttributes(attributes = []) {
   }));
 }
 
-const BiomassPellet = () => {
+const Cocopeat = () => {
   const navigate = useNavigate();
   const [product, setProduct] = useState(null);
   const [images, setImages] = useState([]);
   const [activeIndex, setActiveIndex] = useState(0);
   const [loading, setLoading] = useState(true);
 
-  const categoryName = "Biomass Pellet";
+  const categoryName = "Cocopeat";
 
   useEffect(() => {
     fetchProduct();
@@ -47,25 +47,59 @@ const BiomassPellet = () => {
 
       const categories = catRes.data?.data || [];
 
+      // Normalize spaces: replace multiple spaces with single space
       const matchedCategory = categories.find(
-        (c) => c.name.toLowerCase() === categoryName.toLowerCase()
+        (c) =>
+          c.name.toLowerCase().replace(/\s+/g, ' ').trim() ===
+          categoryName.toLowerCase().replace(/\s+/g, ' ').trim()
       );
 
       if (!matchedCategory) {
+        console.log("Looking for:", categoryName);
+        console.log("Available categories:", categories.map(c => ({
+          name: c.name,
+          normalized: c.name.toLowerCase().replace(/\s+/g, ' ').trim()
+        })));
+        console.error("Category not found:", categoryName);
         setLoading(false);
         return;
       }
 
-      const prodRes = await axios.get(`${API_BASE}/api/products`, {
-        params: {
-          domainName: DOMAIN_NAME,
-          categoryId: matchedCategory._id,
-        },
-      });
+      console.log("Matched Category:", matchedCategory);
 
-      const products = prodRes.data?.data || [];
+      // Try fetching by categoryId first
+      let products = [];
+      try {
+        const prodRes = await axios.get(`${API_BASE}/api/products`, {
+          params: {
+            domainName: DOMAIN_NAME,
+            categoryId: matchedCategory._id,
+          },
+        });
+        products = prodRes.data?.data || [];
+        console.log("Products by categoryId:", products);
+      } catch (prodErr) {
+        console.warn("Failed to fetch by categoryId, trying fallback...");
+      }
+
+      // Fallback: fetch all products and filter by name
+      if (products.length === 0) {
+        const allProdRes = await axios.get(`${API_BASE}/api/products`, {
+          params: { domainName: DOMAIN_NAME },
+        });
+        const allProducts = allProdRes.data?.data || [];
+        console.log("All Products:", allProducts);
+
+        products = allProducts.filter((p) => {
+          const productName = p.name?.toLowerCase().trim() || "";
+          return productName.includes("cocopeat") ||
+                 (productName.includes("coco") && productName.includes("peat"));
+        });
+        console.log("Filtered products by name:", products);
+      }
 
       if (!products.length) {
+        console.warn("No products found for category:", categoryName);
         setLoading(false);
         return;
       }
@@ -75,7 +109,7 @@ const BiomassPellet = () => {
 
       fetchImages(selectedProduct._id);
     } catch (err) {
-      console.error(err);
+      console.error("Fetch error:", err);
       setLoading(false);
     }
   };
@@ -95,10 +129,10 @@ const BiomassPellet = () => {
     }
   };
 
-  if (loading) return <div className="pellet-center">Loading...</div>;
+  if (loading) return <div className="cp-center">Loading...</div>;
 
   if (!product)
-    return <div className="pellet-center">Product Not Found</div>;
+    return <div className="cp-center">Product Not Found</div>;
 
   const normalizedAttributes = normalizeAttributes(product.attributes);
 
@@ -114,38 +148,30 @@ const BiomassPellet = () => {
   const description = getAttr("description")[0];
 
   return (
-    <div className="pellet-page-wrapper">
+    <div className="cp-page-wrapper">
       {/* HERO SECTION WITH FIXED BACKGROUND */}
-      <div className="pellet-hero-section zoom-animate">
-        <div className="pellet-hero-overlay">
-          <div className="pellet-hero-content pellet-zoom-animate">
+      <div className="cp-hero-section zoom-animate">
+        <div className="cp-hero-overlay">
+          <div className="cp-hero-content cp-zoom-animate">
             <h1>{productName}</h1>
-            <p>Premium Quality Biomass Pellet</p>
+            <p>Premium Quality Cocopeat</p>
           </div>
         </div>
       </div>
 
       {/* PRODUCT CONTENT */}
-      <div className="pellet-container">
-        <div className="pellet-card">
+      <div className="cp-container">
+        <div className="cp-card">
         {/* LEFT CONTENT */}
 
-        <div className="pellet-left">
-          {/* <div className="pellet-breadcrumb">
-            <span>Home</span>
-            <span>/</span>
-            <span>Products</span>
-            <span>/</span>
-            <span>{productName}</span>
-          </div> */}
-
-          <h2 className="pellet-title mx-4">{productName}</h2>
+        <div className="cp-left">
+          <h2 className="cp-title mx-4">{productName}</h2>
 
           {description && (
-            <p className="pellet-desc">{description}</p>
+            <p className="cp-desc">{description}</p>
           )}
 
-          <table className="pellet-table">
+          <table className="cp-table">
             <tbody>
               {normalizedAttributes
                 .filter(
@@ -156,11 +182,11 @@ const BiomassPellet = () => {
                 )
                 .map((attr) => (
                   <tr key={attr.attributeKey}>
-                    <td className="pellet-key">
+                    <td className="cp-key">
                       {formatKey(attr.attributeKey)}
                     </td>
 
-                    <td className="pellet-value">
+                    <td className="cp-value">
                       {attr.values.join(", ")}
                     </td>
                   </tr>
@@ -168,15 +194,15 @@ const BiomassPellet = () => {
             </tbody>
           </table>
 
-          <button className="pellet-btn" onClick={() => navigate("/contact")}>
+          <button className="cp-btn" onClick={() => navigate("/contact")}>
             Enquiry
           </button>
         </div>
 
         {/* RIGHT IMAGES */}
 
-        <div className="pellet-right">
-          <div className="pellet-main-img">
+        <div className="cp-right">
+          <div className="cp-main-img">
             {images.length > 0 ? (
               <img
                 src={images[activeIndex]?.image}
@@ -187,7 +213,7 @@ const BiomassPellet = () => {
             )}
           </div>
 
-          <div className="pellet-thumbs">
+          <div className="cp-thumbs">
             {images.map((img, index) => (
               <img
                 key={index}
@@ -196,7 +222,7 @@ const BiomassPellet = () => {
                 onClick={() => setActiveIndex(index)}
                 className={
                   activeIndex === index
-                    ? "pellet-thumb-active"
+                    ? "cp-thumb-active"
                     : ""
                 }
               />
@@ -209,4 +235,4 @@ const BiomassPellet = () => {
   );
 };
 
-export default BiomassPellet;
+export default Cocopeat;

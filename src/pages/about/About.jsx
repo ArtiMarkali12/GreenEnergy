@@ -179,7 +179,8 @@ import "./about.css";
 import missionImg from "../../assets/images/coco1.png";
 import charcoalImg from "../../assets/images/activated.jpg";
 import cocoImg from "../../assets/images/coco_char.png";
-import heroBg from "../../assets/images/coco3.png";
+import heroBg from "../../assets/images/about_coco.png";
+// import heroBg from "../../assets/images/aboutImg.png";
 import BioMass from "../../assets/images/biomass.png";
 
 const About = () => {
@@ -192,11 +193,11 @@ const About = () => {
         style={{ backgroundImage: `url(${heroBg})` }}
       >
         <div className="hero-overlay">
-           
+
           <div className="hero-content">
           <h1>About us</h1>
             <h1>
-  
+
               Sustainable <span>Energy</span> from Coconut
             </h1>
             <p>
@@ -205,6 +206,25 @@ const About = () => {
               while protecting nature.
             </p>
           </div>
+        </div>
+      </section>
+
+      {/* ABOUT CONTENT SECTION */}
+      <section className="about-content-section">
+        <div className="about-content-container">
+          <h2>About Us</h2>
+          <p>
+            Om Green Energy is a forward-thinking company committed to providing sustainable and eco-friendly energy solutions through high-quality biomass products. Our mission is to support industries and communities in transitioning toward cleaner and renewable energy alternatives that reduce environmental impact while maintaining efficient performance.
+          </p>
+          <p>
+            We specialize in the supply and processing of biomass-based materials such as dry coconut shells, coconut shell charcoal, activated charcoal, and other biomass fuel products. These products are carefully sourced from natural agricultural by-products and processed using reliable methods to ensure consistent quality and performance.
+          </p>
+          <p>
+            At Om Green Energy, we believe that agricultural waste can be transformed into valuable energy resources. By utilizing materials like coconut shells and biomass residues, we help convert natural waste into efficient fuel and industrial raw materials. This approach not only promotes sustainable energy usage but also supports responsible resource management and environmental conservation.
+          </p>
+          <p>
+            Our working process begins with the collection of raw materials from trusted sources, followed by proper cleaning, preparation, and processing using efficient production techniques. Each batch goes through quality control checks to maintain high standards before being packaged and distributed to industries and commercial clients.
+          </p>
         </div>
       </section>
 
